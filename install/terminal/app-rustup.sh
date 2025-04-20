@@ -1,1 +1,1 @@
-curl https://sh.rustup.rs -sSf | sh -- -y
+bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- -y
