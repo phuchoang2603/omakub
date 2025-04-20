@@ -4,9 +4,9 @@ echo "deb [signed-by=/etc/apt/trusted.gpg.d/spotify.gpg] http://repository.spoti
 sudo apt update -y
 sudo apt install -y spotify-client
 
-cd /tmp
-git clone https://github.com/abba23/spotify-adblock.git
-cd spotify-adblock
+mkdir -p ~/repos/
+git clone https://github.com/abba23/spotify-adblock.git ~/repos/spotify-adblock
+cd ~/repos/spotify-adblock
 make
 sudo make install
 
