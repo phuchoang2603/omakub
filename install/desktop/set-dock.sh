@@ -6,6 +6,7 @@ apps=(
 	"Neovim.desktop"
 	"code.desktop"
 	"md.obsidian.Obsidian.desktop"
+	"spotify-adblock.desktop"
 	"Omakub.desktop"
 )
 
