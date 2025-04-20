@@ -1,0 +1,93 @@
+{
+    "com.github.jyvern.ulauncher-ssh": {
+        "id": "com.github.jyvern.ulauncher-ssh",
+        "url": "https://github.com/jyvern/ulauncher-ssh",
+        "updated_at": "2025-04-10T17:29:17.103784",
+        "last_commit": "47168e6ea45878787536ae5670612509f5dddced",
+        "last_commit_time": "2021-08-29T16:30:14"
+    },
+    "com.github.hillaryychan.ulauncher-fzf": {
+        "id": "com.github.hillaryychan.ulauncher-fzf",
+        "url": "https://github.com/hillaryychan/ulauncher-fzf",
+        "updated_at": "2025-04-10T17:37:53.635729",
+        "last_commit": "e8137dae6448041fc53ae418263501b068857073",
+        "last_commit_time": "2023-05-16T12:35:35"
+    },
+    "com.github.plibither8.ulauncher-vscode-recent": {
+        "id": "com.github.plibither8.ulauncher-vscode-recent",
+        "url": "https://github.com/plibither8/ulauncher-vscode-recent",
+        "updated_at": "2025-04-10T18:40:01.654093",
+        "last_commit": "60a5106821478f965e4e24dbe1833f6af0d437f1",
+        "last_commit_time": "2023-12-01T07:25:12"
+    },
+    "com.github.tchar.ulauncher-albert-calculate-anything": {
+        "id": "com.github.tchar.ulauncher-albert-calculate-anything",
+        "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
+        "updated_at": "2025-04-10T19:21:42.058882",
+        "last_commit": "037965a44e6f6f496e7ad71ec1651b9edfcde32d",
+        "last_commit_time": "2024-05-29T21:57:26"
+    },
+    "com.github.iboyperson.ulauncher-system": {
+        "id": "com.github.iboyperson.ulauncher-system",
+        "url": "https://github.com/iboyperson/ulauncher-system",
+        "updated_at": "2025-04-10T19:42:38.219117",
+        "last_commit": "7dedd992709fa2297735cddf852404144d4da47c",
+        "last_commit_time": "2023-11-14T16:53:20"
+    },
+    "com.github.brpaz.ulauncher-brotab": {
+        "id": "com.github.brpaz.ulauncher-brotab",
+        "url": "https://github.com/brpaz/ulauncher-brotab",
+        "updated_at": "2025-04-10T23:50:54.665678",
+        "last_commit": "0d00d0121db8a2d6b419de33a92bb7abf02fdddf",
+        "last_commit_time": "2023-02-05T14:35:27"
+    },
+    "com.github.friday.ulauncher-gnome-settings": {
+        "id": "com.github.friday.ulauncher-gnome-settings",
+        "url": "https://github.com/friday/ulauncher-gnome-settings",
+        "updated_at": "2025-04-10T23:54:26.471342",
+        "last_commit": "58aa3c1e90d46007b0bbbae5bfbd5093b527032f",
+        "last_commit_time": "2023-11-25T22:40:04"
+    },
+    "com.github.e1bos.ulauncher-media-controller": {
+        "id": "com.github.e1bos.ulauncher-media-controller",
+        "url": "https://github.com/E1Bos/ulauncher-media-controller",
+        "updated_at": "2025-04-10T23:57:19.964679",
+        "last_commit": "ceb22592f78b3f9b3abafad3bb88e7581efa65fa",
+        "last_commit_time": "2025-01-21T16:09:07"
+    },
+    "com.github.fernaper.ulauncher-vscode": {
+        "id": "com.github.fernaper.ulauncher-vscode",
+        "url": "https://github.com/fernaper/ulauncher-vscode",
+        "updated_at": "2025-04-11T00:16:37.250704",
+        "last_commit": "7cfa181dd34dfef49b9587998d4b10c529bf5eb9",
+        "last_commit_time": "2022-08-20T17:52:13"
+    },
+    "com.github.kazuyuki114.ulauncher-system-monitor": {
+        "id": "com.github.kazuyuki114.ulauncher-system-monitor",
+        "url": "https://github.com/kazuyuki114/ulauncher-system-monitor",
+        "updated_at": "2025-04-11T01:37:01.197557",
+        "last_commit": "34ecb4f94dcc62c2648c3c80cf27ead89d3674db",
+        "last_commit_time": "2025-04-08T16:07:42"
+    },
+    "com.github.ulauncher.ulauncher-kill": {
+        "id": "com.github.ulauncher.ulauncher-kill",
+        "url": "https://github.com/Ulauncher/ulauncher-kill",
+        "updated_at": "2025-04-11T17:58:24.308011",
+        "last_commit": "00ffe8266dbb6c2aea7d86a6363e51cec4b1981f",
+        "last_commit_time": "2022-11-26T16:15:05"
+    },
+    "com.github.rmassidda.ulauncher-firefox-history": {
+        "id": "com.github.rmassidda.ulauncher-firefox-history",
+        "url": "https://github.com/rmassidda/ulauncher-firefox-history",
+        "updated_at": "2025-04-12T02:33:07.220867",
+        "last_commit": "b1d8e9399a466fe7c8dccd2f6d94ad014a260812",
+        "last_commit_time": "2024-03-01T22:15:25"
+    },
+    "com.github.friday.ulauncher-clipboard": {
+        "id": "com.github.friday.ulauncher-clipboard",
+        "url": "https://github.com/friday/ulauncher-clipboard",
+        "updated_at": "2025-04-14T22:53:20.342479",
+        "last_commit": "73420cf4816f925321db15379c9c981c8f28c6fe",
+        "last_commit_time": "2022-08-03T20:22:13"
+    }
+}

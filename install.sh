@@ -7,10 +7,7 @@ trap 'echo "Omakub installation failed! You can retry by running: source ~/.loca
 # Check the distribution name and version and abort if incompatible
 source ~/.local/share/omakub/install/check-version.sh
 
-# Ask for app choices
-echo "Get ready to make a few choices..."
 source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
-source ~/.local/share/omakub/install/first-run-choices.sh
 
 # Desktop software and tweaks will only be installed if we're running Gnome
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
