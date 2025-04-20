@@ -8,7 +8,7 @@ export QT_IM_MODULE=fcitx5
 
 # Copy configuration files
 mkdir -p ~/.config/fcitx5
-cp ~/.local/share/omakub/configs/fcitx5/* ~/.config/fcitx5/
+cp -r ~/.local/share/omakub/configs/fcitx5/* ~/.config/fcitx5/
 
 # Start Fcitx5 on login
 mkdir -p ~/.config/autostart/

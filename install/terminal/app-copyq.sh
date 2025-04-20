@@ -5,7 +5,7 @@ sudo apt install -y copyq
 
 # Copy configuration files
 mkdir -p ~/.config/copyq
-cp ~/.local/share/omakub/configs/copyq/* ~/.config/copyq/
+cp -r ~/.local/share/omakub/configs/copyq/* ~/.config/copyq/
 
 # Start CopyQ on login
 mkdir -p ~/.config/autostart/
