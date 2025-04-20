@@ -1,0 +1,33 @@
+swipe:
+  3:
+    left:
+      sendkey: "LEFTCTRL+PAGEUP" # History back
+    right:
+      sendkey: "LEFTCTRL+PAGEDOWN" # History forward
+    up:
+      sendkey: "LEFTCTRL+T" # Open a new tab
+    down:
+      sendkey: "LEFTCTRL+W" # Close a tab
+  4:
+    left:
+      sendkey: "LEFTMETA+LEFT" # Snap left
+    right:
+      sendkey: "LEFTMETA+RIGHT" # Snap right
+    up:
+      sendkey: "LEFTMETA+UP" # Maximize
+    down:
+      sendkey: "LEFTMETA+DOWN" # Minimize
+
+hold:
+  3:
+    sendkey: "LEFTMETA" # Toggle overview
+  4:
+    sendkey: "LEFTALT+F4" # Close application
+
+threshold:
+  swipe: 1
+  pinch: 1
+
+interval:
+  swipe: 1
+  pinch: 1
