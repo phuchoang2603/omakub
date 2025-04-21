@@ -15,4 +15,4 @@ cp ~/.local/share/omakub/configs/filecxx/data_linux.db ~/repos/filecxx/lib/
 mkdir -p ~/.config/autostart/
 cp ~/.local/share/omakub/configs/autostart/filecxx.desktop ~/.config/autostart/filecxx.desktop
 
-sudo fileu
+sudo filec -i system_service 
