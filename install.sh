@@ -1,8 +1,14 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+# Define a log file for capturing errors
+LOG_FILE="$HOME/.local/share/omakub/install_error.log"
+
+# Redirect stderr to the log file
+exec 2>>"$LOG_FILE"
+
 # Give people a chance to retry running the installation
-trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
+trap 'echo "Omakub installation failed! Check the log at $LOG_FILE. You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
 
 # Check the distribution name and version and abort if incompatible
 source ~/.local/share/omakub/install/check-version.sh
