@@ -11,3 +11,5 @@ make sync-source apply-patch
 sudo dkms add .
 sudo dkms install ideapad-laptop-tb/6.10
 sudo cp dkms/blacklist-ideapad-laptop-tb-dkms.conf /etc/modprobe.d/
+
+cd -

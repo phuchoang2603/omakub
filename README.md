@@ -21,8 +21,6 @@ Omakub includes a powerful CLI tool that provides flexibility for users who want
 
 - **Theme Installation**: Quickly apply beautiful themes to enhance your desktop environment.
 - **Font Installation**: Install a variety of fonts to improve the look and feel of your system.
-- **Optional Applications**: Manually install optional applications like Obsidian, OBS Studio, Spotify, and Zotero.
-- **Laptop-Specific Packages**: Add packages like Autofreq, Fusuma, and Libinput for better laptop performance and usability.
 
 To use the CLI tool, simply run the following command:
 
@@ -31,56 +29,6 @@ omakub
 ```
 
 Follow the interactive prompts to select and install the desired components.
-
-## Applications Pre-installed
-
-Omakub installs and configures the following applications and tools:
-
-- **Terminal Configurations**:
-    - Shell setup
-    - Git configuration
-    - Libraries installation
-
-- **Terminal Applications**:
-    - CopyQ
-    - Fastfetch
-    - Fcitx5
-    - GitHub CLI
-    - Neovim
-    - Rclone
-    - Rustup
-    - Tailscale
-    - Python environment setup
-    - Zellij
-    - Autofreq (laptop-specific)
-    - Fusuma (laptop-specific)
-    - Libinput (laptop-specific)
-    - Gum (required)
-
-- **Desktop Applications**:
-    - Alacritty
-    - Flameshot
-    - GNOME Tweak Tool
-    - VLC
-    - Visual Studio Code
-    - Zen Browser
-    - Ulauncher
-    - Obsidian (optional)
-    - OBS Studio (optional)
-    - Spotify (optional)
-    - Zotero (optional)
-    - Filecxx (optional)
-
-- **Desktop Configurations**:
-    - Flatpak setup
-    - Default terminal set to Alacritty
-    - GNOME App Grid customization
-    - Dock settings
-    - GNOME Extensions
-    - GNOME Hotkeys
-    - GNOME Settings
-    - GNOME Theme
-    - Fonts installation
 
 ## License
 

@@ -2,7 +2,6 @@
 
 mkdir -p ~/repos/
 git clone https://gitlab.com/warningnonpotablewater/libinput-config.git ~/repos/libinput-config
-cd ~/repos/libinput-config
 
 sudo apt-get install -y libinput-dev ninja-build meson
 
@@ -10,7 +9,10 @@ sudo apt-get install -y libinput-dev ninja-build meson
 sudo cp ~/.local/share/omakub/configs/libinput.conf /etc/libinput.conf
 
 # build the project
+cd ~/repos/libinput-config
 meson build
-cd build
+cd -
+cd ~/repos/libinput-config/build
 ninja
 sudo ninja install
+cd -
