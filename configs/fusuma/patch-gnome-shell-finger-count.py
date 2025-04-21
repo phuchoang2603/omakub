@@ -27,7 +27,7 @@ if not files:
 with files[-1].open('r+b') as fp:
     content = fp.read()
     new_content = content.replace(b'GESTURE_FINGER_COUNT = 3',
-                                  b'GESTURE_FINGER_COUNT = 5')
+                                  b'GESTURE_FINGER_COUNT = 4')
     if new_content != content:
         fp.seek(0)
         fp.write(new_content)

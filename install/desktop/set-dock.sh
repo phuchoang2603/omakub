@@ -1,13 +1,12 @@
 # Favorite apps for dock
 apps=(
-	"org.gnome.Nautilus.desktop"
+	"zen.desktop"
 	"Alacritty.desktop"
-	"app.zen_browser.zen.desktop"
-	"Neovim.desktop"
+	# "Neovim.desktop"
 	"code.desktop"
-	"md.obsidian.Obsidian.desktop"
 	"spotify-adblock.desktop"
-	"Omakub.desktop"
+	"obsidian.desktop"
+	"org.gnome.Nautilus.desktop"
 )
 
 # Array to hold installed favorite apps

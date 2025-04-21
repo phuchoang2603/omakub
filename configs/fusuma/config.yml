@@ -8,21 +8,12 @@ swipe:
       sendkey: "LEFTCTRL+T" # Open a new tab
     down:
       sendkey: "LEFTCTRL+W" # Close a tab
-  4:
-    left:
-      sendkey: "LEFTMETA+LEFT" # Snap left
-    right:
-      sendkey: "LEFTMETA+RIGHT" # Snap right
-    up:
-      sendkey: "LEFTMETA+UP" # Maximize
-    down:
-      sendkey: "LEFTMETA+DOWN" # Minimize
 
 hold:
   3:
-    sendkey: "LEFTMETA" # Toggle overview
+    sendkey: "F5" # Refresh page
   4:
-    sendkey: "LEFTALT+F4" # Close application
+    sendkey: "LEFTMETA+W" # Close application
 
 threshold:
   swipe: 1

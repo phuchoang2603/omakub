@@ -1,5 +1,5 @@
 if [ $# -eq 0 ]; then
-	SUB=$(gum choose "Theme" "Font" "Install" "Manual" "Quit" --height 10 --header "" | tr '[:upper:]' '[:lower:]')
+	SUB=$(gum choose "Theme" "Font" "Manual" "Quit" --height 10 --header "" | tr '[:upper:]' '[:lower:]')
 else
 	SUB=$1
 fi

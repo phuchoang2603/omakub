@@ -3,7 +3,7 @@ gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive
 echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu noble main" | sudo tee /etc/apt/sources.list.d/ulauncher-noble.list
 
 sudo apt update -y
-sudo apt install -y ulauncher
+sudo apt install -y ulauncher python3-pip
 
 # Install extension dependencies
 # for media-player-control

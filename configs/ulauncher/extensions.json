@@ -6,13 +6,6 @@
         "last_commit": "47168e6ea45878787536ae5670612509f5dddced",
         "last_commit_time": "2021-08-29T16:30:14"
     },
-    "com.github.hillaryychan.ulauncher-fzf": {
-        "id": "com.github.hillaryychan.ulauncher-fzf",
-        "url": "https://github.com/hillaryychan/ulauncher-fzf",
-        "updated_at": "2025-04-10T17:37:53.635729",
-        "last_commit": "e8137dae6448041fc53ae418263501b068857073",
-        "last_commit_time": "2023-05-16T12:35:35"
-    },
     "com.github.plibither8.ulauncher-vscode-recent": {
         "id": "com.github.plibither8.ulauncher-vscode-recent",
         "url": "https://github.com/plibither8/ulauncher-vscode-recent",
