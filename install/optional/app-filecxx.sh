@@ -15,4 +15,7 @@ cp ~/.local/share/omakub/configs/filecxx/data_linux.db ~/repos/filecxx/lib/
 mkdir -p ~/.config/autostart/
 cp ~/.local/share/omakub/configs/autostart/filecxx.desktop ~/.config/autostart/filecxx.desktop
 
-sudo filec -i system_service 
+# Run fileu and wait for user to complete GUI installation
+sudo fileu
+echo "Press Enter after completing the installation in the GUI..."
+read -r
