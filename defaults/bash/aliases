@@ -13,11 +13,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # Tools
-alias n='nvim'
+alias vim='nvim'
 alias g='git'
 alias d='docker'
 alias r='rails'
-alias bat='batcat'
+alias cat='batcat'
 alias lzg='lazygit'
 alias lzd='lazydocker'
 
