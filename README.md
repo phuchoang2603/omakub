@@ -69,6 +69,7 @@ Omakub installs and configures the following applications and tools:
     - OBS Studio (optional)
     - Spotify (optional)
     - Zotero (optional)
+    - Filecxx (optional)
 
 - **Desktop Configurations**:
     - Flatpak setup

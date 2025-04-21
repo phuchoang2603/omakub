@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/home/phuchoang2603/Downloads/filecxx/fileu
+Exec=/usr/local/bin/fileu
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
