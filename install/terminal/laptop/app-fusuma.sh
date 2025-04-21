@@ -20,3 +20,6 @@ cp -r ~/.local/share/omakub/configs/fusuma/* ~/.config/fusuma/
 mkdir -p ~/.config/autostart/
 cp ~/.local/share/omakub/configs/autostart/fusuma.desktop ~/.config/autostart/fusuma.desktop
 EOF
+
+# Run patch-gnome-shell-finger-count.py
+sudo python3 ~/.config/fusuma/patch-gnome-shell-finger-count.py
