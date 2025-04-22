@@ -24,7 +24,7 @@
         "name": "Messenger",
         "keyword": "mess",
         "cmd": "https://www.messenger.com/",
-        "icon": "~/Pictures/Icons/facebook-messenger.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744332918.8190365
@@ -34,7 +34,7 @@
         "name": "Gmail xuanphuc.a1gv",
         "keyword": "gmail0",
         "cmd": "https://mail.google.com/mail/u/0/",
-        "icon": "~/Pictures/Icons/gmail.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744341716.2518563
@@ -44,7 +44,7 @@
         "name": "Gmail mrphuc",
         "keyword": "gmail1",
         "cmd": "https://mail.google.com/mail/u/1/#inbox",
-        "icon": "~/Pictures/Icons/gmail.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744341745.407652
@@ -54,7 +54,7 @@
         "name": "Google Drive",
         "keyword": "drive",
         "cmd": "https://drive.google.com/drive/my-drive",
-        "icon": "~/Pictures/Icons/google-drive.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744349304.8474324
@@ -64,7 +64,7 @@
         "name": "Onenote",
         "keyword": "onote",
         "cmd": "https://m365.cloud.microsoft/launch/onenote",
-        "icon": "~/Pictures/Icons/microsoft-onenote.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744350145.6956477
@@ -74,7 +74,7 @@
         "name": "Onedrive",
         "keyword": "odrive",
         "cmd": "https://12221f-my.sharepoint.com/my",
-        "icon": "~/Pictures/Icons/microsoft-onedrive.webp",
+        "icon": null,
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744351396.3508039
