@@ -6,3 +6,5 @@ sudo apt install -y \
   redis-tools sqlite3 libsqlite3-0 libmysqlclient-dev libpq-dev postgresql-client postgresql-client-common
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
+
+wget -qO- https://astral.sh/uv/install.sh | sh

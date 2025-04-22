@@ -35,3 +35,6 @@ favorites_list="[${favorites_list%,}]"
 
 # Set the favorite apps
 gsettings set org.gnome.shell favorite-apps "$favorites_list"
+
+# Configure Auto Move Windows
+gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['zen.desktop:1', 'Alacritty.desktop:2', 'code.desktop:3', 'spotify-adblock.desktop:4', 'spotify.desktop:4', 'obsidian.desktop:5', 'org.gnome.Nautilus.desktop:6']"
