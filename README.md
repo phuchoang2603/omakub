@@ -4,6 +4,8 @@ Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern 
 
 Watch the introduction video and read more at [omakub.org](https://omakub.org).
 
+[![GitHub Introduction](https://img.youtube.com/vi/2WSktnoubMM/0.jpg)](https://youtu.be/2WSktnoubMM)
+
 ## Getting Started
 
 To set up your system with Omakub, run the following command in your terminal:
