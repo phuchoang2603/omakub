@@ -1,11 +1,4 @@
 {
-    "com.github.jyvern.ulauncher-ssh": {
-        "id": "com.github.jyvern.ulauncher-ssh",
-        "url": "https://github.com/jyvern/ulauncher-ssh",
-        "updated_at": "2025-04-10T17:29:17.103784",
-        "last_commit": "47168e6ea45878787536ae5670612509f5dddced",
-        "last_commit_time": "2021-08-29T16:30:14"
-    },
     "com.github.plibither8.ulauncher-vscode-recent": {
         "id": "com.github.plibither8.ulauncher-vscode-recent",
         "url": "https://github.com/plibither8/ulauncher-vscode-recent",

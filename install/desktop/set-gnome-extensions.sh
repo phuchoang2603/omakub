@@ -1,4 +1,4 @@
-sudo apt install -y gnome-shell-extension-manager pipx
+sudo apt install -y gnome-shell-extension-manager
 pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions

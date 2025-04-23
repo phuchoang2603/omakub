@@ -36,3 +36,26 @@ webm2mp4() {
   output_file="${input_file%.webm}.mp4"
   ffmpeg -i "$input_file" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 192k "$output_file"
 }
+
+za() {
+  local session_name=${1:-$(basename "$PWD")}
+  zellij attach "$session_name" || zellij -s "$session_name"
+}
+
+zj() {
+    # Get raw output (with colors)
+    ZJ_SESSIONS=$(zellij list-sessions)
+    NO_SESSIONS=$(echo "$ZJ_SESSIONS" | wc -l)
+
+    # Only proceed if there are existing sessions
+    if [ "$NO_SESSIONS" -ge 1 ]; then
+        # Let user pick a session (color preserved)
+        SELECTED=$(echo "$ZJ_SESSIONS" | fzf --ansi --prompt="Select a session: ")
+
+        # Strip ANSI codes and extract session name
+        SESSION=$(echo "$SELECTED" | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}')
+
+        # Attach to selected session
+        [ -n "$SESSION" ] && zellij attach "$SESSION"
+    fi
+}
