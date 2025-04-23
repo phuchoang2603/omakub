@@ -9,6 +9,7 @@ if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
 
   source $OMAKUB_PATH/themes/$THEME/gnome.sh
   source $OMAKUB_PATH/themes/$THEME/tophat.sh
+  source $OMAKUB_PATH/themes/$THEME/vscode.sh
 fi
 
 source $OMAKUB_PATH/bin/omakub-sub/menu.sh
