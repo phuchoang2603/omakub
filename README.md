@@ -47,10 +47,11 @@ Below is a list of applications and tools included in Omakub, categorized by the
 - **Tailscale**: A secure VPN service.
 - **Zotero**: A reference management tool.
 - **Dock Settings**: Customizes the GNOME dock appearance and behavior.
+- **Mainline Kernels**: Provides the latest Linux kernel versions for advanced users who want cutting-edge features and hardware support.
 
 ### Terminal
 - **Gum**: A tool for building rich terminal UIs.
-- **CopyQ**: An advanced clipboard manager.
+- **CopyQ** and **Wl-clipboard**: Advanced clipboard managers.
 - **Fastfetch**: A fast system information tool.
 - **Fcitx5**: An input method framework.
 - **GitHub CLI**: A command-line interface for GitHub.
@@ -58,6 +59,7 @@ Below is a list of applications and tools included in Omakub, categorized by the
 - **Neovim**: A modernized version of Vim.
 - **NextDNS**: A DNS service for privacy and security.
 - **Zellij**: A terminal workspace and multiplexer.
+- **Starship**: A minimal, blazing-fast, and customizable prompt for any shell.
 
 ### Utilities
 - **Set Git**: Configures Git with user-specific settings.
