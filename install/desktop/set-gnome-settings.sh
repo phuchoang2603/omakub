@@ -9,9 +9,3 @@ gsettings set org.gnome.desktop.calendar show-weekdate true
 
 # Set Caps lock as Esc behavior
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
-
-# Check if the user have com.ubuntu.touch.system, then implement the following
-if gsettings list-recursively com.ubuntu.touch.system > /dev/null 2>&1; then
-    # Set the touch screen to be disabled when the keyboard is open
-    gsettings set com.ubuntu.touch.system auto-brightness false
-fi

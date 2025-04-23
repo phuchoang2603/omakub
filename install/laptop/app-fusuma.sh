@@ -12,9 +12,9 @@ sudo gem install revdev
 sudo gem install bundler
 sudo gem install fusuma-plugin-sendkey
 
-# copy configuration files
+# create symbolic links for configuration files
 mkdir -p ~/.config/fusuma
-cp -r ~/.local/share/omakub/configs/fusuma/* ~/.config/fusuma/
+ln -sf ~/.local/share/omakub/configs/fusuma/config.yml ~/.config/fusuma/config.yml
 
 # copy autostart file
 mkdir -p ~/.config/autostart/
@@ -22,4 +22,4 @@ cp ~/.local/share/omakub/configs/autostart/fusuma.desktop ~/.config/autostart/fu
 EOF
 
 # Run patch-gnome-shell-finger-count.py
-sudo python3 ~/.config/fusuma/patch-gnome-shell-finger-count.py
+sudo python3 ~/.local/share/omakub/configs/fusuma/patch-gnome-shell-finger-count.py
