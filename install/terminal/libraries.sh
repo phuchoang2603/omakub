@@ -5,7 +5,3 @@ sudo apt install -y \
   gir1.2-gtop-2.0 gir1.2-clutter-1.0 \
   redis-tools sqlite3 libsqlite3-0 libmysqlclient-dev libpq-dev postgresql-client postgresql-client-common \
   python3-pip pipx
-
-wget -qO- https://astral.sh/uv/install.sh | sh
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
