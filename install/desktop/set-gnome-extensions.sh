@@ -45,7 +45,7 @@ gsettings set org.gnome.shell.extensions.just-perfection animation 2
 gsettings set org.gnome.shell.extensions.just-perfection dash-app-running true
 gsettings set org.gnome.shell.extensions.just-perfection workspace true
 gsettings set org.gnome.shell.extensions.just-perfection workspace-popup false
-gsettings set org.gnome.shell.extensions.just-perfection window-maximized-on-create true
+gsettings set org.gnome.shell.extensions.just-perfection window-maximized-on-create false
 
 # Configure Blur My Shell
 gsettings set org.gnome.shell.extensions.blur-my-shell.appfolder blur false
@@ -79,3 +79,4 @@ gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
 
 # Configure AlphabeticalAppGrid
 gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
+
