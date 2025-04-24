@@ -30,6 +30,18 @@ Below is a list of applications and tools included in Omakub, categorized by the
 - **VS Code**: A popular code editor with extensive extensions.
 - **Zen Browser**: A lightweight and privacy-focused web browser.
 - **Ulauncher**: A fast application launcher for Linux.
+- **CopyQ**: A advanced clipboard management
+- **Fcitx5**: An input method framework.
+
+### Terminal
+- **Gum**: A tool for building rich terminal UIs.
+- **Wl-clipboard**: clipboard managers for Neovim.
+- **Fastfetch**: A fast system information tool.
+- **GitHub CLI**: A command-line interface for GitHub.
+- **Lazygit**: A simple terminal UI for Git.
+- **Neovim**: A modernized version of Vim.
+- **Zellij**: A terminal workspace and multiplexer.
+- **Starship**: A minimal, blazing-fast, and customizable prompt for any shell.
 
 ### Laptop
 - **AutoFreq**: Automatically adjusts CPU frequency for better performance and battery life.
@@ -39,6 +51,7 @@ Below is a list of applications and tools included in Omakub, categorized by the
 
 ### Optional
 - **Filecxx**: A modern file manager.
+- **NextDNS**: A DNS service for privacy and security.
 - **LocalSend**: A tool for local file sharing.
 - **OBS Studio**: Software for video recording and live streaming.
 - **Obsidian**: A knowledge base and note-taking application.
@@ -48,18 +61,6 @@ Below is a list of applications and tools included in Omakub, categorized by the
 - **Zotero**: A reference management tool.
 - **Dock Settings**: Customizes the GNOME dock appearance and behavior.
 - **Mainline Kernels**: Provides the latest Linux kernel versions for advanced users who want cutting-edge features and hardware support.
-
-### Terminal
-- **Gum**: A tool for building rich terminal UIs.
-- **CopyQ** and **Wl-clipboard**: Advanced clipboard managers.
-- **Fastfetch**: A fast system information tool.
-- **Fcitx5**: An input method framework.
-- **GitHub CLI**: A command-line interface for GitHub.
-- **Lazygit**: A simple terminal UI for Git.
-- **Neovim**: A modernized version of Vim.
-- **NextDNS**: A DNS service for privacy and security.
-- **Zellij**: A terminal workspace and multiplexer.
-- **Starship**: A minimal, blazing-fast, and customizable prompt for any shell.
 
 ### Utilities
 - **Set Git**: Configures Git with user-specific settings.
