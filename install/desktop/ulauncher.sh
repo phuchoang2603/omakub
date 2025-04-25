@@ -10,9 +10,6 @@ sudo apt install -y ulauncher
 sudo apt install -y playerctl
 # for calculate-anything
 pip3 install Pint simpleeval parsedatetime pytz babel --break-system-packages
-# for firefox brotab
-pip3 install memoization==0.4.0 brotab==1.4.2 --break-system-packages
-bt install
 # for vscode-recent
 pip3 install fuzzywuzzy --break-system-packages
 
