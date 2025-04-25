@@ -17,7 +17,6 @@ gext install blur-my-shell@aunetx
 gext install space-bar@luchrioh
 gext install undecorate@sun.wxg@gmail.com
 gext install tophat@fflewddur.github.io
-gext install AlphabeticalAppGrid@stuarthayhurst
 gext install kimpanel@kde.org
 gext install auto-move-windows@gnome-shell-extensions.gcampax.github.com
 
@@ -27,7 +26,6 @@ sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perf
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/auto-move-windows\@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.auto-move-windows.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -76,7 +74,3 @@ gsettings set org.gnome.shell.extensions.tophat show-mem true
 gsettings set org.gnome.shell.extensions.tophat mem-display numeric
 gsettings set org.gnome.shell.extensions.tophat show-fs false
 gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
-
-# Configure AlphabeticalAppGrid
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
-
