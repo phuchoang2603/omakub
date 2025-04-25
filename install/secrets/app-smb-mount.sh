@@ -1,5 +1,5 @@
 # Mount samba storage
-sudo apt-get install cifs-utils
+sudo apt-get install -y cifs-utils
 
 home="$HOME"
 
