@@ -26,6 +26,4 @@ if [ ! -d "$HOME/.config/nvim" ]; then
 
   # Turn off animated scrolling
   cp ~/.local/share/omakub/configs/neovim/snacks-animated-scrolling-off.lua ~/.config/nvim/lua/plugins/
-
-  # TODO add remote-nvim plugin
 fi
