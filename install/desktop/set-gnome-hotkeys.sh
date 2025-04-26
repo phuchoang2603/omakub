@@ -19,6 +19,7 @@ gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>m']"
 # Adjust screenshot keybindings
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super><Shift>s']"
 gsettings set org.gnome.shell.keybindings screenshot-window "['<Super><Shift>w']"
+gsettings set org.gnome.shell.keybindings screenshot "['Print']"
 
 # Use 6 fixed workspaces instead of dynamic mode
 gsettings set org.gnome.mutter dynamic-workspaces false
@@ -66,3 +67,4 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'CopyQ'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'copyq -e "toggle()"'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>v'
+
