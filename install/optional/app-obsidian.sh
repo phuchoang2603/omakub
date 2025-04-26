@@ -1,9 +1,7 @@
 # Obsidian is a multi-platform note taking application. See https://obsidian.md
-# Install dependencies
-sudo apt install -y jq
 
 # Fetch latest Obsidian .deb URL
-latest_url=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | \
+latest_url=$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest |
   jq -r '.assets[] | select(.name | endswith("_amd64.deb")) | .browser_download_url')
 
 # Download the .deb file
