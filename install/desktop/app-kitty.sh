@@ -19,7 +19,7 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 
 # Config
 mkdir -p ~/.config/kitty
-cp ~/.local/share/omakub/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
+sudo ln -sf ~/.local/share/omakub/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
+sudo ln -sf ~/.local/share/omakub/configs/kitty/font-size.conf ~/.config/kitty/font-size.conf
 cp ~/.local/share/omakub/themes/tokyo-night/kitty.conf ~/.config/kitty/theme.conf
 cp ~/.local/share/omakub/configs/kitty/fonts/CaskaydiaMono.conf ~/.config/kitty/font.conf
-cp ~/.local/share/omakub/configs/kitty/font-size.conf ~/.config/kitty/font-size.conf

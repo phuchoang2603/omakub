@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Path to your omakub themes
+OMAKUB_PATH="$HOME/.local/share/omakub"
+
+get_theme_by_time() {
+  local hour=$(date +"%-H")
+
+  if [ "$hour" -ge 6 ] && [ "$hour" -lt 12 ]; then
+    echo "gruvbox"
+  elif [ "$hour" -ge 12 ] && [ "$hour" -lt 18 ]; then
+    echo "nord"
+  elif [ "$hour" -ge 18 ] && [ "$hour" -lt 24 ]; then
+    echo "catppuccin"
+  else
+    echo "tokyo-night"
+  fi
+}
+
+THEME=$(get_theme_by_time)
+
+if [ -n "$THEME" ]; then
+  cp "$OMAKUB_PATH/themes/$THEME/kitty.conf" ~/.config/kitty/theme.conf
+  cp "$OMAKUB_PATH/themes/$THEME/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
+
+  source "$OMAKUB_PATH/themes/$THEME/gnome.sh"
+  source "$OMAKUB_PATH/themes/$THEME/tmux.sh"
+  source "$OMAKUB_PATH/themes/$THEME/tophat.sh"
+  source "$OMAKUB_PATH/themes/$THEME/vscode.sh"
+fi

@@ -1,14 +1,48 @@
-THEME_NAMES=("Tokyo Night" "Catppuccin" "Nord" "Gruvbox")
+# Define OMAKUB_PATH in case this script is run by cron or without a full shell
+OMAKUB_PATH="$HOME/.local/share/omakub"
+
+# Define available options
+THEME_NAMES=("Automatic" "Tokyo Night" "Catppuccin" "Nord" "Gruvbox")
+
+# Show gum chooser
 THEME=$(gum choose "${THEME_NAMES[@]}" "<< Back" --header "Choose your theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
-if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
-  cp $OMAKUB_PATH/themes/$THEME/kitty.conf ~/.config/kitty/theme.conf
-  cp $OMAKUB_PATH/themes/$THEME/neovim.lua ~/.config/nvim/lua/plugins/theme.lua
+# Path to your auto-theme-switcher script
+AUTO_THEME_SCRIPT="$HOME/.local/share/omakub/bin/auto-theme-switcher"
 
-  source $OMAKUB_PATH/themes/$THEME/gnome.sh
-  source $OMAKUB_PATH/themes/$THEME/tmux.sh
-  source $OMAKUB_PATH/themes/$THEME/tophat.sh
-  source $OMAKUB_PATH/themes/$THEME/vscode.sh
+# Function to add cron job
+enable_cron() {
+  # Check if crontab already has it
+  (
+    crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT"
+    echo "0 * * * * /bin/bash $AUTO_THEME_SCRIPT"
+  ) | crontab -
+  echo "✅ Automatic theme switching enabled with cron."
+}
+
+# Function to remove cron job
+disable_cron() {
+  crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT" | crontab -
+  echo "❌ Automatic theme switching disabled (cron entry removed)."
+}
+
+# Main logic
+if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
+  if [ "$THEME" == "automatic" ]; then
+    enable_cron
+  else
+    disable_cron
+
+    # Apply the manually chosen theme
+    cp "$OMAKUB_PATH/themes/$THEME/kitty.conf" ~/.config/kitty/theme.conf
+    cp "$OMAKUB_PATH/themes/$THEME/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
+
+    source "$OMAKUB_PATH/themes/$THEME/gnome.sh"
+    source "$OMAKUB_PATH/themes/$THEME/tmux.sh"
+    source "$OMAKUB_PATH/themes/$THEME/tophat.sh"
+    source "$OMAKUB_PATH/themes/$THEME/vscode.sh"
+  fi
 fi
 
-source $OMAKUB_PATH/bin/omakub-sub/menu.sh
+# Return to main menu
+source "$OMAKUB_PATH/bin/omakub-sub/menu.sh"
