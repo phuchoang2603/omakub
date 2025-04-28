@@ -28,7 +28,5 @@ if [ ! -d "$HOME/.config/nvim" ]; then
   ln -sf ~/.local/share/omakub/configs/nvim/lazyvim.json ~/.config/nvim/lazyvim.json
   ln -sf ~/.local/share/omakub/configs/nvim/lazy-lock.json ~/.config/nvim/lazy-lock.json
   ln -sf ~/.local/share/omakub/configs/nvim/lua/config/options.lua ~/.config/nvim/lua/config/options.lua
-  # Plugin configuration
-  ln -sf ~/.local/share/omakub/configs/nvim/lua/plugins/built-in.lua ~/.config/nvim/lua/plugins/built-in.lua
-  ln -sf ~/.local/share/omakub/configs/nvim/lua/plugins/third-party-plugins.lua ~/.config/nvim/lua/plugins/third-party-plugins.lua
+  ln -sf ~/.local/share/omakub/configs/nvim/lua/plugins/plugins.lua ~/.config/nvim/lua/plugins/plugins.lua
 fi

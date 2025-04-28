@@ -7,15 +7,6 @@ return {
 				enabled = false, -- Disable scrolling animations
 			},
 			dashboard = {
-				preset = {
-					header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-				},
 				sections = {
 					{ section = "header" },
 					{ section = "keys", padding = 1 },
@@ -37,7 +28,9 @@ return {
 			picker = {
 				sources = {
 					explorer = {
-						layout = { layout = { position = "right" } },
+						layout = { preset = "sidebar", preview = "true" },
+						auto_close = true,
+						jump = { close = true },
 					},
 				},
 			},
@@ -66,21 +59,21 @@ return {
 		"echasnovski/mini.files",
 		keys = {
 			{
-				"<leader>em",
+				"<leader>e.",
 				function()
 					require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
 				end,
 				desc = "Open mini.files (directory of current file)",
 			},
 			{
-				"<leader>eM",
+				"<leader>em",
 				function()
 					require("mini.files").open(vim.uv.cwd(), true)
 				end,
 				desc = "Open mini.files (cwd)",
 			},
 			{
-				"<leader>er",
+				"<leader>eM",
 				function()
 					require("mini.files").open(LazyVim.root(), true)
 				end,
@@ -107,42 +100,43 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		enabled = false,
-		-- keys = {
-		-- 	{
-		-- 		"L",
-		-- 		function()
-		-- 			vim.cmd("bnext " .. vim.v.count1)
-		-- 		end,
-		-- 		desc = "Next buffer",
-		-- 	},
-		-- 	{
-		-- 		"H",
-		-- 		function()
-		-- 			vim.cmd("bprev " .. vim.v.count1)
-		-- 		end,
-		-- 		desc = "Previous buffer",
-		-- 	},
-		-- 	{
-		-- 		"]b",
-		-- 		function()
-		-- 			vim.cmd("bnext " .. vim.v.count1)
-		-- 		end,
-		-- 		desc = "Next buffer",
-		-- 	},
-		-- 	{
-		-- 		"[b",
-		-- 		function()
-		-- 			vim.cmd("bprev " .. vim.v.count1)
-		-- 		end,
-		-- 		desc = "Previous buffer",
-		-- 	},
-		-- },
 	},
-	-- yanky.nvim
-	-- {
-	-- 	"gbprod/yanky.nvim",
-	-- 	opts = {
-	-- 		system_clipboard = { sync_with_ring = false },
-	-- 	},
-	-- },
+	-- guess-indent.nvim
+	{ "nmac427/guess-indent.nvim", opts = { auto_cmd = true, override_editorconfig = true } },
+	-- nvim-spider
+	{
+		"chrisgrieser/nvim-spider",
+		opts = {},
+		keys = {
+			{
+				"w",
+				"<cmd>lua require('spider').motion('w')<CR>",
+				mode = { "n", "o", "x" },
+				desc = "Move to start of next of word",
+			},
+			{
+				"e",
+				"<cmd>lua require('spider').motion('e')<CR>",
+				mode = { "n", "o", "x" },
+				desc = "Move to end of word",
+			},
+			{
+				"b",
+				"<cmd>lua require('spider').motion('b')<CR>",
+				mode = { "n", "o", "x" },
+				desc = "Move to start of previous word",
+			},
+		},
+	},
+	-- remote-nvim
+	{
+		"amitds1997/remote-nvim.nvim",
+		version = "*", -- Pin to GitHub releases
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- For standard functions
+			"MunifTanjim/nui.nvim", -- To build the plugin UI
+			"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+		},
+		config = true,
+	},
 }
