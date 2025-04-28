@@ -1,6 +1,6 @@
 # Install default programming languages
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")
-languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --no-limit --height 10 --header "Select programming languages")
+languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --selected "Node.js" --selected "Python" --selected "Rust" --no-limit --height 15 --header "Select programming languages - node python and rust are default")
 
 if [[ -n "$languages" ]]; then
   for language in $languages; do
@@ -32,6 +32,7 @@ if [[ -n "$languages" ]]; then
       ;;
     Rust)
       bash -c "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)" -- -y
+      . "$HOME/.cargo/env"
       ;;
     Java)
       mise use --global java@latest

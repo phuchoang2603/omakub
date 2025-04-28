@@ -37,7 +37,6 @@ return {
 			picker = {
 				sources = {
 					explorer = {
-						auto_close = true,
 						layout = { layout = { position = "right" } },
 					},
 				},
@@ -45,6 +44,21 @@ return {
 		},
 		keys = {
 			{ "<leader>e", false },
+			{
+				"<leader>eE",
+				function()
+					Snacks.explorer({ cwd = vim.uv.cwd() })
+				end,
+				desc = "Explorer Snacks (cwd)",
+			},
+			{
+				"<leader>ee",
+				function()
+					Snacks.explorer({ cwd = LazyVim.root() })
+				end,
+				desc = "Explorer Snacks (root)",
+			},
+			{ "<leader>E", false },
 		},
 	},
 	-- mini.files
@@ -52,21 +66,21 @@ return {
 		"echasnovski/mini.files",
 		keys = {
 			{
-				"<leader>e",
+				"<leader>em",
 				function()
 					require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
 				end,
 				desc = "Open mini.files (directory of current file)",
 			},
 			{
-				"<leader>E",
+				"<leader>eM",
 				function()
 					require("mini.files").open(vim.uv.cwd(), true)
 				end,
 				desc = "Open mini.files (cwd)",
 			},
 			{
-				"<leader>fm",
+				"<leader>er",
 				function()
 					require("mini.files").open(LazyVim.root(), true)
 				end,
@@ -76,6 +90,16 @@ return {
 		opts = {
 			options = {
 				use_as_default_explorer = true,
+			},
+		},
+	},
+	-- which-key.nvim
+	{
+		"folke/which-key.nvim",
+		events = "VeryLazy",
+		opts = {
+			spec = {
+				{ "<leader>e", group = "+explorer", icon = "📂" },
 			},
 		},
 	},
