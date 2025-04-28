@@ -13,9 +13,6 @@ pip3 install Pint simpleeval parsedatetime pytz babel --break-system-packages
 # for vscode-recent
 pip3 install fuzzywuzzy --break-system-packages
 
-# Start ulauncher to have it populate config before we overwrite
 mkdir -p ~/.config/autostart/
 cp ~/.local/share/omakub/configs/autostart/ulauncher.desktop ~/.config/autostart/ulauncher.desktop
-gtk-launch ulauncher.desktop >/dev/null 2>&1
-sleep 2 # ensure enough time for ulauncher to set defaults
-cp ~/.local/share/omakub/configs/ulauncher/* ~/.config/ulauncher/
+ln -s ~/.local/share/omakub/configs/ulauncher ~/.config/ulauncher

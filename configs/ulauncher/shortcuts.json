@@ -31,7 +31,7 @@
     },
     "ef9f9052-dee1-4e35-863c-785b5355e8e8": {
         "id": "ef9f9052-dee1-4e35-863c-785b5355e8e8",
-        "name": "Gmail xuanphuc.a1gv",
+        "name": "Gmail0",
         "keyword": "gmail0",
         "cmd": "https://mail.google.com/mail/u/0/",
         "icon": null,
@@ -41,7 +41,7 @@
     },
     "77c8aa7e-81e3-461f-ac00-4ae5e8d37d73": {
         "id": "77c8aa7e-81e3-461f-ac00-4ae5e8d37d73",
-        "name": "Gmail mrphuc",
+        "name": "Gmail1",
         "keyword": "gmail1",
         "cmd": "https://mail.google.com/mail/u/1/#inbox",
         "icon": null,
@@ -118,5 +118,15 @@
         "is_default_search": false,
         "run_without_argument": true,
         "added": 1744435576.3398385
+    },
+    "64544d94-6495-4e2d-943c-18d737e28a19": {
+        "id": "64544d94-6495-4e2d-943c-18d737e28a19",
+        "name": "Todo",
+        "keyword": "todo",
+        "cmd": "https://to-do.office.com/tasks/inbox",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": true,
+        "added": 1745808434.622225
     }
 }
