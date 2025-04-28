@@ -15,9 +15,9 @@ get_theme_by_time() {
   elif [ "$hour" -ge 12 ] && [ "$hour" -lt 18 ]; then
     echo "nord"
   elif [ "$hour" -ge 18 ] && [ "$hour" -lt 24 ]; then
-    echo "catppuccin"
-  else
     echo "tokyo-night"
+  else
+    echo "catppuccin"
   fi
 }
 

@@ -52,6 +52,14 @@ return {
 					{ section = "startup" },
 				},
 			},
+			picker = {
+				sources = {
+					explorer = {
+						auto_close = true,
+						layout = { layout = { position = "right" } },
+					},
+				},
+			},
 		},
 		keys = {
 			{ "<leader>e", false },
