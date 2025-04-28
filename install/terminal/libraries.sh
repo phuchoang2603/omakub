@@ -11,9 +11,3 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
-
-# Install colorscript for neovim
-git clone https://gitlab.com/dwt1/shell-color-scripts.git ~/repos/shell-color-scripts
-cd ~/repos/shell-color-scripts || return 1
-sudo make install
-cd - || return 1
