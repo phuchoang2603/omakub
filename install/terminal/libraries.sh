@@ -1,9 +1,19 @@
 sudo apt install -y \
-  build-essential pkg-config autoconf bison clang \
-  libssl-dev libreadline-dev zlib1g-dev libyaml-dev libncurses5-dev libffi-dev libgdbm-dev libjemalloc2 \
-  libvips imagemagick libmagickwand-dev mupdf mupdf-tools \
-  gir1.2-gtop-2.0 gir1.2-clutter-1.0 \
-  redis-tools sqlite3 libsqlite3-0 libmysqlclient-dev libpq-dev postgresql-client postgresql-client-common \
-  python3-pip pipx
+  autoconf bison build-essential clang pkg-config \
+  libffi-dev libgdbm-dev libjemalloc2 libncurses5-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev \
+  gir1.2-clutter-1.0 gir1.2-gtop-2.0 \
+  libmysqlclient-dev libpq-dev libsqlite3-0 postgresql-client postgresql-client-common redis-tools sqlite3 \
+  ffmpeg imagemagick libmagickwand-dev libvips mupdf mupdf-tools poppler-utils \
+  7zip apache2-utils bat btop eza fd-find fzf jq plocate ripgrep tldr zoxide \
+  pipx python3-pip
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
+# Install colorscript for neovim
+git clone https://gitlab.com/dwt1/shell-color-scripts.git ~/repos/shell-color-scripts
+cd ~/repos/shell-color-scripts || return 1
+sudo make install
+cd - || return 1
