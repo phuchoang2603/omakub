@@ -9,5 +9,7 @@ sudo apt install -y \
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-mkdir -p ~/.local/bin
-ln -s /usr/bin/batcat ~/.local/bin/bat
+if ! command -v bat &> /dev/null; then
+  mkdir -p ~/.local/bin
+  ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
