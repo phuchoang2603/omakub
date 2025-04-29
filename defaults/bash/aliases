@@ -6,7 +6,7 @@ alias lta='lt -a'
 alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
 alias fd='fdfind'
 alias cd='z'
-alias copy='rsync -avzh --info=progress2'
+alias copy='rclone copy --progress --multi-thread-streams=32'
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
 
 # Directories
