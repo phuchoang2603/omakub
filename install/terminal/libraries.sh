@@ -7,8 +7,6 @@ sudo apt install -y \
   7zip apache2-utils bat btop eza fd-find fzf jq plocate ripgrep tldr zoxide \
   pipx python3-pip
 
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
 if ! command -v bat &>/dev/null; then
   mkdir -p ~/.local/bin
   ln -s /usr/bin/batcat ~/.local/bin/bat

@@ -24,6 +24,7 @@ if [[ -n "$languages" ]]; then
       ;;
     Python)
       mise use --global python@latest
+      mise use --global uv@latest
       ;;
     Elixir)
       mise use --global erlang@latest
