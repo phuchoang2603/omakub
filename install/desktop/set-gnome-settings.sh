@@ -21,5 +21,5 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners true
 
 # Workspace stuff
-gsettings set org.gnome.mutter workspaces-only-on-primary false
+gsettings set org.gnome.mutter workspaces-only-on-primary true
 gsettings set org.gnome.shell.app-switcher current-workspace-only true

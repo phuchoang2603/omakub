@@ -9,7 +9,12 @@ sudo apt install -y \
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-if ! command -v bat &> /dev/null; then
+if ! command -v bat &>/dev/null; then
   mkdir -p ~/.local/bin
   ln -s /usr/bin/batcat ~/.local/bin/bat
+fi
+
+if ! command -v fd &>/dev/null; then
+  mkdir -p ~/.local/bin
+  ln -s "$(which fdfind)" ~/.local/bin/fd
 fi

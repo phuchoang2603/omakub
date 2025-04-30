@@ -22,11 +22,11 @@ fi
 
 # Use gum choose to select installers - pass array directly
 selected=$(gum choose "${INSTALLER_NAMES[@]}" --selected='*' --no-limit --height 15 --header "Optional Applications")
-          
+
 # Exit if nothing was selected
 if [ -z "$selected" ]; then
     echo "No applications selected. Exiting."
-    return 0 2>/dev/null || exit 0  # Return if sourced, exit if executed directly
+    return 0 2>/dev/null || exit 0 # Return if sourced, exit if executed directly
 fi
 
 echo "Installing selected applications..."
@@ -43,3 +43,5 @@ for name in $selected; do
 done
 
 echo "Optional installation complete!"
+gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot
+

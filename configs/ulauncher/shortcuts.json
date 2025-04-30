@@ -53,10 +53,10 @@
         "id": "e14745cb-db35-44f4-a599-73633bfee8b6",
         "name": "Google Drive",
         "keyword": "drive",
-        "cmd": "https://drive.google.com/drive/my-drive",
+        "cmd": "https://drive.google.com/drive/search?q=%s",
         "icon": null,
         "is_default_search": false,
-        "run_without_argument": true,
+        "run_without_argument": false,
         "added": 1744349304.8474324
     },
     "63e43d90-4871-4f63-9fd0-a92673f2565d": {
@@ -73,10 +73,10 @@
         "id": "a8633024-64a4-4146-b854-ca55a6e47de2",
         "name": "Onedrive",
         "keyword": "odrive",
-        "cmd": "https://12221f-my.sharepoint.com/my",
+        "cmd": "https://12221f-my.sharepoint.com/query?q=%s",
         "icon": null,
         "is_default_search": false,
-        "run_without_argument": true,
+        "run_without_argument": false,
         "added": 1744351396.3508039
     },
     "3512b749-7aad-446a-b439-7030516b5f5f": {
