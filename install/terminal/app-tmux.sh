@@ -10,9 +10,7 @@ ln -sf "$HOME/.local/share/omakub/configs/tmux/tmux.reset.conf" "${XDG_CONFIG_HO
 # Install TPM (Tmux Plugin Manager)
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
-# Apply theme
-source ~/.local/share/omakub/themes/tokyo-night/tmux.sh
-
 go install github.com/joshmedeski/sesh/v2@latest
+go install github.com/arl/gitmux@latest
 
 tmux source-file "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" || true
