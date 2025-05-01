@@ -17,14 +17,14 @@ mkdir -p ~/mnt/onedrive
 mkdir -p ~/mnt/gdrive
 
 # 5. Prepare service files
-TEMPLATE_DIR="$HOME/.local/share/omakub/configs/rclone"
+TEMPLATE_DIR="$HOME/.config/rclone"
 SYSTEMD_DIR="$HOME/.config/systemd/user"
 mkdir -p "$SYSTEMD_DIR"
 
 echo "[+] Installing systemd service files..."
 for template in "$TEMPLATE_DIR"/*.service.template; do
     service_name=$(basename "$template" .template)
-    sed "s|{{HOME}}|$HOME|g" "$template" > "$SYSTEMD_DIR/$service_name"
+    sed "s|{{HOME}}|$HOME|g" "$template" >"$SYSTEMD_DIR/$service_name"
     echo "  -> Installed: $service_name"
 done
 
@@ -39,3 +39,4 @@ for service in "$SYSTEMD_DIR"/*.service; do
 done
 
 echo "[✓] Rclone setup complete!"
+

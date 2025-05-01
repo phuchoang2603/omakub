@@ -16,10 +16,3 @@ echo 'kitty.desktop' >~/.config/xdg-terminals.list
 
 # Made kitty default terminals
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator ~/.local/bin/kitty 50
-
-# Config
-mkdir -p ~/.config/kitty
-sudo ln -sf ~/.local/share/omakub/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
-sudo ln -sf ~/.local/share/omakub/configs/kitty/font-size.conf ~/.config/kitty/font-size.conf
-cp ~/.local/share/omakub/themes/tokyo-night/kitty.conf ~/.config/kitty/theme.conf
-cp ~/.local/share/omakub/configs/kitty/fonts/CaskaydiaMono.conf ~/.config/kitty/font.conf

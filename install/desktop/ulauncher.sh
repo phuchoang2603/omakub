@@ -12,7 +12,3 @@ sudo apt install -y playerctl
 pip3 install Pint simpleeval parsedatetime pytz babel --break-system-packages
 # for vscode-recent
 pip3 install fuzzywuzzy --break-system-packages
-
-mkdir -p ~/.config/autostart/
-cp ~/.local/share/omakub/configs/autostart/ulauncher.desktop ~/.config/autostart/ulauncher.desktop
-ln -s ~/.local/share/omakub/configs/ulauncher ~/.config/ulauncher

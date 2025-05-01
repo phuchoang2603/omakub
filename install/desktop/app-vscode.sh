@@ -8,5 +8,3 @@ cd -
 sudo apt update -y
 sudo apt install -y code
 
-mkdir -p ~/.config/Code/User
-code --install-extension enkia.tokyo-night

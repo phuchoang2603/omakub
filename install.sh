@@ -7,7 +7,16 @@ set -e
 # Give people a chance to retry running the installation
 trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
 
+# Needed for all installer
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y curl git unzip
+
 source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
+
+# Symbolic dotfiles
+git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
+source ~/repos/dotfiles/symlink.sh
 
 # Desktop software and tweaks will only be installed if we're running Gnome
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
