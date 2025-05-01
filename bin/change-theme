@@ -5,7 +5,7 @@ OMAKUB_PATH="$HOME/.local/share/omakub"
 THEME_NAMES=("Automatic" "Tokyo Night" "Catppuccin" "Nord" "Gruvbox")
 
 # Show gum chooser
-THEME=$(gum choose "${THEME_NAMES[@]}" "<< Back" --header "Choose your theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+THEME=$(gum choose "${THEME_NAMES[@]}" --header "Choose your theme" --height 10 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
 
 # Path to your auto-theme-switcher script
 AUTO_THEME_SCRIPT="$HOME/.local/share/omakub/bin/auto-theme-switcher"
@@ -42,6 +42,3 @@ if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
     source "$OMAKUB_PATH/themes/$THEME/vscode.sh"
   fi
 fi
-
-# Return to main menu
-source "$OMAKUB_PATH/bin/omakub-sub/menu.sh"
