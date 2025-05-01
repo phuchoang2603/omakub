@@ -25,76 +25,51 @@ return {
 					{ section = "startup" },
 				},
 			},
-			picker = {
-				sources = {
-					explorer = {
-						layout = { preset = "sidebar", preview = "true" },
-						auto_close = true,
-						jump = { close = true },
-					},
-				},
+			explorer = {
+				enabled = false,
 			},
 		},
 		keys = {
 			{ "<leader>e", false },
-			{
-				"<leader>eE",
-				function()
-					Snacks.explorer({ cwd = vim.uv.cwd() })
-				end,
-				desc = "Explorer Snacks (cwd)",
-			},
-			{
-				"<leader>ee",
-				function()
-					Snacks.explorer({ cwd = LazyVim.root() })
-				end,
-				desc = "Explorer Snacks (root)",
-			},
 			{ "<leader>E", false },
 		},
 	},
-	-- mini.files
+	-- yazi.nvim
 	{
-		"echasnovski/mini.files",
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"folke/snacks.nvim",
+		},
 		keys = {
 			{
-				"<leader>e.",
-				function()
-					require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-				end,
-				desc = "Open mini.files (directory of current file)",
+				"<leader>e",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
 			},
 			{
-				"<leader>em",
-				function()
-					require("mini.files").open(vim.uv.cwd(), true)
-				end,
-				desc = "Open mini.files (cwd)",
+				"<leader>E",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
 			},
 			{
-				"<leader>eM",
-				function()
-					require("mini.files").open(LazyVim.root(), true)
-				end,
-				desc = "Open mini.files (root)",
+				"<c-up>",
+				"<cmd>Yazi toggle<cr>",
+				desc = "Resume the last yazi session",
 			},
 		},
 		opts = {
-			options = {
-				use_as_default_explorer = true,
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = true,
+			keymaps = {
+				show_help = "<f1>",
 			},
 		},
-	},
-	-- which-key.nvim
-	{
-		"folke/which-key.nvim",
-		events = "VeryLazy",
-		opts = {
-			spec = {
-				{ "<leader>e", group = "+explorer", icon = "📂" },
-			},
-		},
+		init = function()
+			vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
+		end,
 	},
 	-- bufferline.nvim
 	{
