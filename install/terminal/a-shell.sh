@@ -3,7 +3,7 @@
 cp ~/.local/share/omakub/configs/bashrc ~/.bashrc
 
 # Load the PATH for use later in the installers
-source ~/.local/share/omakub/defaults/bash/shell
+source ~/.local/share/omakub/configs/bash/shell
 
 [ -f "~/.inputrc" ] && mv ~/.inputrc ~/.inputrc.bak
 # Configure the inputrc using Omakub defaults

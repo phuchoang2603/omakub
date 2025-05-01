@@ -1,4 +1,6 @@
-source ~/.local/share/omakub/defaults/bash/rc
+source ~/.local/share/omakub/configs/bash/shell
+source ~/.local/share/omakub/configs/bash/aliases
+source ~/.local/share/omakub/configs/bash/init
 
 # Editor used by CLI
 export EDITOR="nvim"
