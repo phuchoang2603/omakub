@@ -4,6 +4,10 @@ wget -O ~/repos/filecxx.zip "https://github.com/filecxx/FileCentipede/releases/d
 unzip ~/repos/filecxx.zip -d ~/repos/filecxx
 rm ~/repos/filecxx.zip
 
+# Create symlinks
+sudo ln -sf ~/repos/filecxx/filec /usr/local/bin/filec
+sudo ln -sf ~/repos/filecxx/fileu /usr/local/bin/fileu
+
 # Copy data_linux.db to ~/repos/filecxx/lib
 cp ~/.config/filecxx/data_linux.db ~/repos/filecxx/lib/
 
