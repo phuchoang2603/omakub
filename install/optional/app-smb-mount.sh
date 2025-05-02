@@ -3,9 +3,10 @@ paru -S --noconfirm --needed cifs-utils
 
 home="$HOME"
 
-read -pr "Enter Samba username: " smb_user
-read -spr "Enter Samba password: " smb_pass
-echo
+echo -n "Enter Samba username: "
+read smb_user
+echo -n "Enter Samba password: "
+read -s smb_pass
 echo -e "username=$smb_user\npassword=$smb_pass" >"$home/.smbcredentials"
 chmod 600 "$home/.smbcredentials"
 
