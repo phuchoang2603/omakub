@@ -7,8 +7,8 @@ set -e
 # Give people a chance to retry running the installation
 trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
 
-source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/prerequisite.sh >/dev/null
+source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 
 # Symbolic dotfiles
 git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
