@@ -5,7 +5,8 @@ apps=(
   # "Neovim.desktop"
   "code.desktop"
   "spotify-adblock.desktop"
-  "obsidian.desktop"
+  # "obsidian.desktop"
+  "md.obsidian.Obsidian.desktop"
   "org.gnome.Nautilus.desktop"
 )
 

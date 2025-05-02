@@ -20,7 +20,7 @@ if [[ -n "$languages" ]]; then
       mise use --global go@latest
       ;;
     Python)
-      mise use --global python@3.11
+      mise use --global python@latest
       # paru -S --noconfirm --needed python312
       mise use --global uv@latest
       ;;

@@ -1,1 +1,1 @@
-paru -S --noconfirm --needed code
+paru -S --noconfirm --needed visual-studio-code-bin
