@@ -1,5 +1,7 @@
 # Symbolic dotfiles
-git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
+if [ ! -d "$HOME/repos/dotfiles" ]; then
+  git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
+fi
 source ~/repos/dotfiles/symlink.sh
 
 source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
