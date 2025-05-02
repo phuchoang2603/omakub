@@ -1,6 +1,5 @@
 # Needed for all installer
 sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm curl git unzip
 
 if ! command -v paru &>/dev/null; then
   printf "\033[1;33mInstalling paru as AUR helper...\033[0m\n"
@@ -11,3 +10,8 @@ if ! command -v paru &>/dev/null; then
 else
   printf "\033[1;32mParu already installed\033[0m\n"
 fi
+
+paru -S --noconfirm \
+  bash bash-completion autoconf bison base-devel clang pkgconf curl git unzip \
+  ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza tldr \
+  python-pipx python-pip

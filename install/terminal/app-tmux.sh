@@ -1,7 +1,4 @@
-sudo apt install -y tmux
-
-# Create config directory
-mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/tmux"
+paru -S --noconfirm tmux
 
 # Install TPM (Tmux Plugin Manager)
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
