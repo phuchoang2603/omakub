@@ -11,7 +11,6 @@ if [[ -n "$languages" ]]; then
     case $language in
     Ruby)
       mise use --global ruby@latest
-      mise x ruby -- gem install rails --no-document
       ;;
     Node.js)
       mise use --global node@lts
