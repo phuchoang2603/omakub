@@ -1,2 +1,2 @@
 # Gum is used for the Omakub commands for tailoring Omakub after the initial install
-paru -S gum
+sudo paru -S gum
