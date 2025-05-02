@@ -1,6 +1,6 @@
-source ~/.local/share/omakub/install/terminal/libraries.sh
 source ~/.local/share/omakub/install/terminal/mise.sh
 source ~/.local/share/omakub/install/terminal/select-dev-language.sh
+source ~/.local/share/omakub/install/terminal/libraries.sh
 
 # Then run the rest, excluding those three
 for installer in ~/.local/share/omakub/install/terminal/*.sh; do
