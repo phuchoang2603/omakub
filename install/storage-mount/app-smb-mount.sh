@@ -1,7 +1,13 @@
 # Mount samba storage
-sudo apt-get install -y cifs-utils
+paru -S --noconfirm --needed cifs-utils
 
 home="$HOME"
+
+read -pr "Enter Samba username: " smb_user
+read -spr "Enter Samba password: " smb_pass
+echo
+echo -e "username=$smb_user\npassword=$smb_pass" >"$home/.smbcredentials"
+chmod 600 "$home/.smbcredentials"
 
 sudo mkdir -p /mnt/DATA /mnt/repos
 
@@ -12,4 +18,4 @@ EOF
 
 sudo systemctl daemon-reload
 
-sudo mount -a
+sudo mount -av

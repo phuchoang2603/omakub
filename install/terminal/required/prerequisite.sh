@@ -11,7 +11,7 @@ else
   printf "\033[1;32mParu already installed\033[0m\n"
 fi
 
-paru -S --noconfirm \
-  bash bash-completion autoconf bison base-devel clang pkgconf curl git unzip \
+paru -S --noconfirm --needed \
+  bash bash-completion autoconf bison base-devel clang pkgconf curl git unzip meson \
   ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza tldr \
-  python-pipx python-pip
+  python-pipx libinput

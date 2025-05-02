@@ -1,1 +1,1 @@
-paru -S --noconfirm lazygit
+paru -S --noconfirm --needed lazygit

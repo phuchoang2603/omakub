@@ -1,1 +1,1 @@
-paru -S --noconfirm github-cli
+paru -S --noconfirm --needed github-cli

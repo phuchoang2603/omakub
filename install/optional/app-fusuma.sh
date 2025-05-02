@@ -2,8 +2,6 @@
 
 sudo gpasswd -a $USER input
 sg input <<EOF
-sudo apt install -y libinput-tools libevdev-dev ruby-dev
-sudo apt install -y ruby
 sudo gem install fusuma
 gsettings set org.gnome.desktop.peripherals.touchpad send-events enabled
 

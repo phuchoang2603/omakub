@@ -1,4 +1,4 @@
-paru -S --noconfirm \
+paru -S --noconfirm --needed \
   neovim \
   tree-sitter \
   luarocks

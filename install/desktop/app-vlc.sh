@@ -1,1 +1,1 @@
-sudo apt install -y vlc
+paru -S --noconfirm --needed vlc

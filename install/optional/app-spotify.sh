@@ -1,8 +1,5 @@
 # Stream music using https://spotify.com
-curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/spotify.gpg] http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt update -y
-sudo apt install -y spotify-client
+paru -S --noconfirm --needed spotify
 
 mkdir -p ~/repos/
 git clone https://github.com/abba23/spotify-adblock.git ~/repos/spotify-adblock
@@ -12,7 +9,7 @@ sudo make install
 
 mkdir -p ~/.local/share/applications
 
-cat > ~/.local/share/applications/spotify-adblock.desktop <<EOF
+cat >~/.local/share/applications/spotify-adblock.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Spotify (adblock)
@@ -27,3 +24,4 @@ StartupWMClass=spotify
 EOF
 
 cd -
+

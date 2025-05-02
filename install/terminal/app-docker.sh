@@ -1,4 +1,4 @@
-paru -S --noconfirm \
+paru -S --noconfirm --needed \
   docker lazydocker \
   docker-compose
 

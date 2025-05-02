@@ -3,8 +3,6 @@
 mkdir -p ~/repos/
 git clone https://gitlab.com/warningnonpotablewater/libinput-config.git ~/repos/libinput-config
 
-sudo apt-get install -y libinput-dev ninja-build meson
-
 sudo cp ~/.config/libinput.conf /etc/libinput.conf
 
 # build the project

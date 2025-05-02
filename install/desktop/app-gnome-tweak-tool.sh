@@ -1,1 +1,1 @@
-sudo apt install -y gnome-tweak-tool
+paru -S --noconfirm --needed gnome-tweaks
