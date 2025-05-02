@@ -1,5 +1,5 @@
 # Install default programming languages
-AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")
+AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "Python" "Elixir" "Rust" "Java")
 languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --selected "Node.js" --selected "Python" --selected "Rust" --selected "Go" --no-limit --height 15 --header "Select programming languages - some are default")
 
 if [[ -n "$languages" ]]; then
@@ -14,13 +14,6 @@ if [[ -n "$languages" ]]; then
       ;;
     Go)
       mise use --global go@latest
-      ;;
-    PHP)
-      sudo add-apt-repository -y ppa:ondrej/php
-      sudo apt -y install php8.4 php8.4-{curl,apcu,intl,mbstring,opcache,pgsql,mysql,sqlite3,redis,xml,zip}
-      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-      php composer-setup.php --quiet && sudo mv composer.phar /usr/local/bin/composer
-      rm composer-setup.php
       ;;
     Python)
       mise use --global python@latest

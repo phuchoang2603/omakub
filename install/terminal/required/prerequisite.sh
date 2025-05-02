@@ -1,4 +1,13 @@
 # Needed for all installer
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y curl git unzip
+sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm curl git unzip
+
+if ! command -v paru &>/dev/null; then
+  printf "\033[1;33mInstalling paru as AUR helper...\033[0m\n"
+  sudo pacman -S --needed --noconfirm base-devel git
+  cd /opt && sudo git clone https://aur.archlinux.org/paru-bin.git && sudo chown -R "$(whoami)":"$(whoami)" ./paru-bin
+  cd paru-bin && makepkg --noconfirm -si
+  printf "\033[1;32mParu installed\033[0m\n"
+else
+  printf "\033[1;32mParu already installed\033[0m\n"
+fi
