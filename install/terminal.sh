@@ -1,11 +1,17 @@
-source ~/.local/share/omakub/install/terminal/mise.sh
-source ~/.local/share/omakub/install/terminal/select-dev-language.sh
-source ~/.local/share/omakub/install/terminal/libraries.sh
+# Symbolic dotfiles
+git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
+source ~/repos/dotfiles/symlink.sh
 
-# Then run the rest, excluding those three
-for installer in ~/.local/share/omakub/install/terminal/*.sh; do
-  case "$installer" in
-  *libraries.sh | *mise.sh | *select-dev-language.sh) continue ;; # skip
-  *) source "$installer" ;;
-  esac
-done
+source ~/.local/share/omakub/install/terminal/required/a-shell.sh >/dev/null
+source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
+source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
+source ~/.local/share/omakub/install/terminal/required/set-git.sh >/dev/null
+
+# Install languages
+source ~/.local/share/omakub/install/terminal/required/mise.sh
+source ~/.local/share/omakub/install/terminal/required/select-dev-language.sh
+source ~/.local/share/omakub/install/terminal/required/libraries.sh
+
+# for installer in ~/.local/share/omakub/install/terminal/*.sh; do
+#   source "$installer"
+# done
