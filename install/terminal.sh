@@ -8,7 +8,6 @@ source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/set-git.sh >/dev/null
 
 # Install languages
-source ~/.local/share/omakub/install/terminal/required/mise.sh
 source ~/.local/share/omakub/install/terminal/required/select-dev-language.sh
 source ~/.local/share/omakub/install/terminal/required/libraries.sh
 

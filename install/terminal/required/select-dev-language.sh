@@ -1,3 +1,7 @@
+# Install mise for managing multiple versions of languages. See https://mise.jdx.dev/
+curl https://mise.run | sh
+eval "$(mise activate bash)"
+
 # Install default programming languages
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "Python" "Elixir" "Rust" "Java")
 languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --selected "Node.js" --selected "Python" --selected "Rust" --selected "Go" --no-limit --height 15 --header "Select programming languages - some are default")
