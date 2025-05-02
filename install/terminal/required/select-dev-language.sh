@@ -10,7 +10,8 @@ if [[ -n "$languages" ]]; then
   for language in $languages; do
     case $language in
     Ruby)
-      mise use --global ruby@latest
+      # mise use --global ruby@latest
+      paru -S --noconfirm --needed ruby
       ;;
     Node.js)
       mise use --global node@lts
@@ -19,7 +20,8 @@ if [[ -n "$languages" ]]; then
       mise use --global go@latest
       ;;
     Python)
-      mise use --global python@3.11
+      # mise use --global python@3.11
+      paru -S --noconfirm --needed python312
       mise use --global uv@latest
       ;;
     Elixir)
