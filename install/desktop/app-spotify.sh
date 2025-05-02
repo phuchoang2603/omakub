@@ -2,7 +2,11 @@
 paru -S --noconfirm --needed spotify
 
 mkdir -p ~/repos/
-git clone https://github.com/abba23/spotify-adblock.git ~/repos/spotify-adblock
+if [ ! -d "$HOME/repos/spotify-adblock" ]; then
+  git clone https://github.com/abba23/spotify-adblock.git "$HOME/repos/spotify-adblock"
+else
+  echo "Spotify Adblock is already cloned at $HOME/repos/spotify-adblock"
+fi
 cd ~/repos/spotify-adblock
 make
 sudo make install
@@ -24,4 +28,3 @@ StartupWMClass=spotify
 EOF
 
 cd -
-
