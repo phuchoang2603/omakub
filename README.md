@@ -1,6 +1,6 @@
 # Omakub
 
-Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern system by running a single command. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools.
+Turn a fresh Arch Linux installation with GNOME into a fully-configured, beautiful, and modern system by running a single command. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools.
 
 Watch the introduction video and read more at [omakub.org](https://omakub.org).
 
@@ -14,9 +14,3 @@ To set up your system with Omakub, run the following command in your terminal:
 git clone https://github.com/phuchoang2603/omakub.git ~/.local/share/omakub
 source ~/.local/share/omakub/install.sh
 ```
-
-This will download and execute the installation script, which will configure your system with all the tools and settings included in this repository.
-
-## License
-
-Omakub is released under the [MIT License](https://opensource.org/licenses/MIT).
