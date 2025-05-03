@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Setup environment for graphical session
 export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
-
-# Path to your omakub themes
 OMAKUB_PATH="$HOME/.local/share/omakub"
+source "$OMAKUB_PATH/bin/theme-utils.sh"
 
 get_theme_by_time() {
-  local hour=$(date +"%-H")
+  local hour
+  hour=$(date +"%-H")
 
   if [ "$hour" -ge 6 ] && [ "$hour" -lt 12 ]; then
     echo "gruvbox"
@@ -22,14 +21,4 @@ get_theme_by_time() {
 }
 
 THEME=$(get_theme_by_time)
-
-if [ -n "$THEME" ]; then
-  cp "$OMAKUB_PATH/themes/$THEME/kitty.conf" ~/.config/kitty/theme.conf
-  cp "$OMAKUB_PATH/themes/$THEME/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
-
-  source "$OMAKUB_PATH/themes/$THEME/gnome.sh"
-  source "$OMAKUB_PATH/themes/$THEME/tophat.sh"
-  source "$OMAKUB_PATH/themes/$THEME/vscode.sh"
-fi
-
-echo "$(date) - Theme switched to $THEME" >>"$HOME/.local/share/omakub/auto-theme-switcher.log"
+apply_theme "$THEME"
