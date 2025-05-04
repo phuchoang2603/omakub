@@ -12,6 +12,8 @@ apply_theme() {
 
   cp "$OMAKUB_PATH/themes/$theme/kitty.conf" ~/.config/kitty/theme.conf
   cp "$OMAKUB_PATH/themes/$theme/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
+  cp "$OMAKUB_PATH/themes/$theme/rofi.rasi" ~/.config/rofi/shared/colors.rasi
+
   source "$OMAKUB_PATH/themes/$theme/vscode.sh"
 
   if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ -n "$DISPLAY" ]; then

@@ -5,7 +5,6 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
 fi
 
 source ~/.local/share/omakub/bin/change-theme
-source ~/.local/share/omakub/bin/change-font
 
 # Logout to pickup changes
 gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot
