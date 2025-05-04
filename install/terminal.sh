@@ -3,9 +3,9 @@ if [ ! -d "$HOME/repos/dotfiles" ]; then
   git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
 fi
 source ~/repos/dotfiles/symlink.sh
+source ~/.bashrc
 
 source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
-source ~/.local/share/omakub/install/terminal/required/a-shell.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/set-git.sh >/dev/null
 
