@@ -12,6 +12,7 @@ else
 fi
 
 paru -S --noconfirm --needed \
-  curl git unzip bash bash-completion autoconf bison base-devel clang pkgconf meson libinput \
-  ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza tldr cronie \
-  python-pipx python-pip
+  base-devel autoconf bison clang pkgconf meson \
+  bash bash-completion curl git unzip tldr cronie man-db man-pages \
+  ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza \
+  python-pipx python-pip libinput

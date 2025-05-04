@@ -8,7 +8,7 @@ echo "Updating DNS settings in $RESOLVED_CONF..."
 sudo cp "$RESOLVED_CONF" "$RESOLVED_CONF.bak"
 
 # Write the new configuration
-sudo tee "$RESOLVED_CONF" > /dev/null <<EOF
+sudo tee "$RESOLVED_CONF" >/dev/null <<EOF
 [Resolve]
 DNS=45.90.28.0#a224db.dns.nextdns.io
 DNS=2a07:a8c0::#a224db.dns.nextdns.io
