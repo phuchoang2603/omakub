@@ -1,15 +1,12 @@
+source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
 # Symbolic dotfiles
 if [ ! -d "$HOME/repos/dotfiles" ]; then
   git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
 fi
 source ~/repos/dotfiles/symlink.sh
 source ~/.config/bash/shell
-
-source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
 source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/set-git.sh >/dev/null
-
-# Install languages
 source ~/.local/share/omakub/install/terminal/required/select-dev-language.sh
 
 for installer in ~/.local/share/omakub/install/terminal/*.sh; do
