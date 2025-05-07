@@ -14,5 +14,5 @@ fi
 paru -S --noconfirm --needed \
   base-devel autoconf bison clang pkgconf meson \
   bash bash-completion curl git unzip tldr cronie man-db man-pages \
-  ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza playerctl \
-  python-pipx python-pip libinput bluez bluez-utils
+  ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat btop eza \
+  python-pipx python-pip

@@ -1,7 +1,11 @@
-# Desktop software and tweaks will only be installed if we're running Gnome
+for installer in ~/.local/share/omakub/install/desktop/*.sh; do source $installer; done
+
 if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-  for installer in ~/.local/share/omakub/install/desktop/*.sh; do source $installer; done
   for installer in ~/.local/share/omakub/install/desktop/gnome/*.sh; do source $installer; done
+fi
+
+if gum confirm "Do you want to install Hyprland packages?"; then
+  for installer in ~/.local/share/omakub/install/desktop/hyprland/*.sh; do source "$installer"; done
 fi
 
 source ~/.local/share/omakub/bin/change-theme
