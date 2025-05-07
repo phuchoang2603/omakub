@@ -12,3 +12,6 @@ paru -S --noconfirm --needed bluez bluez-utils
 
 # Media player
 paru -S --noconfirm --needed playerctl vlc
+
+# System fonts
+paru -S --noconfirm --needed noto-fonts noto-fonts-emoji noto-fonts-cjk noto-fonts-extra ttf-ms-fonts

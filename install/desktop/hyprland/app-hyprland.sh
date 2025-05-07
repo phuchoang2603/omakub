@@ -10,10 +10,6 @@ packages=(
   xdg-desktop-portal-gtk
   nwg-look
   nwg-displays
-  noto-fonts
-  noto-fonts-emoji
-  noto-fonts-cjk
-  noto-fonts-extra
   libadwaita
   qt5-wayland
   qt6-wayland
