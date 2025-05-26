@@ -1,4 +1,4 @@
-paru -S --noconfirm --needed kubectl kubectx
+paru -S --noconfirm --needed kubectl kubectx argocd
 
 cd /tmp || exit
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
