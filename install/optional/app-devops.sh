@@ -1,4 +1,5 @@
 paru -S --noconfirm --needed kubectl kubectx argocd
+paru -S --noconfirm --needed google-cloud-cli-lite google-cloud-cli-gke-gcloud-auth-plugin
 
 cd /tmp || exit
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
