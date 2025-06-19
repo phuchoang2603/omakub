@@ -4,7 +4,7 @@ eval "$(mise activate bash)"
 
 # Install default programming languages
 AVAILABLE_LANGUAGES=("Ruby" "Node.js" "Go" "Python" "Elixir" "Rust" "Java")
-languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --selected "Ruby" --selected "Node.js" --selected "Python" --selected "Rust" --selected "Go" --no-limit --height 15 --header "Select programming languages - some are default")
+languages=$(gum choose "${AVAILABLE_LANGUAGES[@]}" --selected "Node.js" --selected "Python" --selected "Rust" --selected "Go" --no-limit --height 15 --header "Select programming languages - some are default")
 
 if [[ -n "$languages" ]]; then
   for language in $languages; do
