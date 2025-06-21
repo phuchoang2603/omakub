@@ -1,4 +1,8 @@
-paru -S --noconfirm --needed tmux
+if [ "$OMAKUB_OS_ID" == "arch" ]; then
+  paru -S --noconfirm --needed tmux
+elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
+  sudo apt install -y tmux
+fi
 
 # Install TPM (Tmux Plugin Manager)
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then

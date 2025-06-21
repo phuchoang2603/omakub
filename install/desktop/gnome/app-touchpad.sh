@@ -1,5 +1,9 @@
 # Libinput is a library that handles input devices in Wayland and X11. Fix touchpad scrolling way too fast
-paru -S --noconfirm --needed libinput
+if [ "$OMAKUB_OS_ID" == "arch" ]; then
+  paru -S --noconfirm --needed libinput
+elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
+  sudo apt install -y libinput-dev libinput-tools libevdev-dev
+fi
 
 mkdir -p ~/repos/
 if [ ! -d "$HOME/repos/libinput-config" ]; then
@@ -21,7 +25,14 @@ cd -
 
 # Fusuma is a multi-touch gesture recognizer for Linux. https://github.com/iberianpig/fusuma
 sudo gpasswd -a $USER input
-paru -S --noconfirm --needed ruby-fusuma ruby-fusuma-plugin-sendkey
+if [ "$OMAKUB_OS_ID" == "arch" ]; then
+  paru -S --noconfirm --needed ruby-fusuma ruby-fusuma-plugin-sendkey
+elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
+  sudo gem install fusuma
+  sudo gem install revdev
+  sudo gem install bundler
+  sudo gem install fusuma-plugin-sendkey
+fi
 
 gsettings set org.gnome.desktop.peripherals.touchpad send-events enabled
 

@@ -1,4 +1,8 @@
-paru -S --noconfirm --needed extension-manager
+if [ "$OMAKUB_OS_ID" == "arch" ]; then
+  paru -S --noconfirm --needed extension-manager
+elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
+  sudo apt install -y gnome-shell-extension-manager
+fi
 pipx install gnome-extensions-cli --system-site-packages
 
 # Pause to assure user is ready to accept confirmations

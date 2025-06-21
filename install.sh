@@ -4,8 +4,14 @@ exec > >(tee -a ~/.local/share/omakub/install.log) 2>&1
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Give people a chance to retry running the installation
-trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
+# Detect the operating system
+if [ -f "/etc/os-release" ]; then
+  . /etc/os-release
+  OMAKUB_OS_ID=$ID
+else
+  OMAKUB_OS_ID="unknown"
+fi
+export OMAKUB_OS_ID
 
 echo "Installing terminal and desktop tools..."
 
