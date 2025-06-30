@@ -1,5 +1,5 @@
 if [ "$OMAKUB_OS_ID" == "arch" ]; then
-  paru -S --noconfirm --needed spotify
+  paru -S --noconfirm --needed spotify-launcher
 elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
   echo "deb [signed-by=/etc/apt/trusted.gpg.d/spotify.gpg] http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
@@ -19,7 +19,22 @@ sudo make install
 
 mkdir -p ~/.local/share/applications
 
-cat >~/.local/share/applications/spotify-adblock.desktop <<EOF
+if [ "$OMAKUB_OS_ID" == "arch" ]; then
+  cat >~/.local/share/applications/spotify-adblock.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Spotify (adblock)
+GenericName=Music Player
+Icon=spotify-launcher
+TryExec=spotify-launcher
+Exec=env LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify-launcher %U
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify
+EOF
+elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
+  cat >~/.local/share/applications/spotify-adblock.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Spotify (adblock)
@@ -32,5 +47,6 @@ MimeType=x-scheme-handler/spotify;
 Categories=Audio;Music;Player;AudioVideo;
 StartupWMClass=spotify
 EOF
+fi
 
 cd -

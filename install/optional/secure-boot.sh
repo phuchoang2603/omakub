@@ -1,4 +1,4 @@
-paru -S sbctl sbsigntools
+paru -S sbctl
 sudo -i
 sbctl create-keys
 sbctl enroll-keys --microsoft
