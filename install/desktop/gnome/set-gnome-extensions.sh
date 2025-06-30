@@ -14,6 +14,7 @@ gext install space-bar@luchrioh
 gext install tophat@fflewddur.github.io
 gext install kimpanel@kde.org
 gext install auto-move-windows@gnome-shell-extensions.gcampax.github.com
+gext install Battery-Health-Charging@maniacx.github.com
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
