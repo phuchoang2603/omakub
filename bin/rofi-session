@@ -13,16 +13,11 @@ Hibernate\x00icon\x1fsystem-suspend-hibernate"
 
 declare -A commands=(
     ["Log Out"]="playerctl pause && loginctl lock-session"
-    ["Reboot"]="confirm && systemctl reboot"
-    ["Shutdown"]="confirm && systemctl poweroff"
+    ["Reboot"]="systemctl reboot"
+    ["Shutdown"]="systemctl poweroff"
     ["Suspend"]="playerctl pause && systemctl suspend"
     ["Hibernate"]="systemctl hibernate"
 )
-
-confirm() {
-    choice=$(echo -e "Yes\nNo" | $ROFI -p "Are you sure?" -dmenu -i -a 0 -u 1 -selected-row 1)
-    [[ "$choice" == "Yes" ]]
-}
 
 while choice=$(echo -en "$entries" | $ROFI $rofi_flags -dmenu -i -p "Session"); do
     eval "${commands[$choice]}"

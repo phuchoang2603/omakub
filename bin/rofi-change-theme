@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+ROFI="${ROFI:-rofi}"
+rofi_flags="-normal-window"
+
+# Set the path to the Omakub directory
+OMAKUB_PATH="$HOME/.local/share/omakub"
+AUTO_THEME_SCRIPT="$OMAKUB_PATH/bin/auto-theme-switcher"
+source "$OMAKUB_PATH/bin/theme-utils.sh"
+
+# Define theme entries for Rofi
+entries=(
+  "Automatic"
+  "Tokyo Night"
+  "Catppuccin"
+  "Nord"
+  "Gruvbox"
+)
+
+# Function to enable cron for automatic theme switching
+enable_cron() {
+  (
+    crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT"
+    echo "0 * * * * /bin/bash $AUTO_THEME_SCRIPT"
+  ) | crontab -
+}
+
+# Function to disable cron for automatic theme switching
+disable_cron() {
+  crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT" | crontab -
+}
+
+# Display the theme selection menu using Rofi
+choice=$(printf "%s\n" "${entries[@]}" | $ROFI $rofi_flags -dmenu -i -p "Theme")
+
+# Process the selected theme
+if [ -n "$choice" ]; then
+  theme_id=$(echo "$choice" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+  if [ "$theme_id" == "automatic" ]; then
+    enable_cron
+    source "$AUTO_THEME_SCRIPT"
+  else
+    disable_cron
+    apply_theme "$theme_id"
+  fi
+fi
+
+exit 0
