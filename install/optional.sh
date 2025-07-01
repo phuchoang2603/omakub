@@ -43,4 +43,3 @@ for name in $selected; do
 done
 
 echo "Optional installation complete!"
-gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot

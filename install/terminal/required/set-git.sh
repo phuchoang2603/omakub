@@ -6,10 +6,11 @@ git config --global alias.st status
 git config --global pull.rebase true
 git config --global init.defaultBranch main
 
-echo "Enter git identification..."
-SYSTEM_NAME=$(getent passwd "$USER" | cut -d ':' -f 5 | cut -d ',' -f 1)
-GIT_NAME=$(gum input --placeholder "Enter full name" --value "$SYSTEM_NAME" --prompt "Name> ")
-GIT_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
+# Set identification from install inputs
+if [[ -n "${OMAKUB_USER_NAME//[[:space:]]/}" ]]; then
+  git config --global user.name "$OMAKUB_USER_NAME"
+fi
 
-git config --global user.name "$GIT_NAME"
-git config --global user.email "$GIT_EMAIL"
+if [[ -n "${OMAKUB_USER_EMAIL//[[:space:]]/}" ]]; then
+  git config --global user.email "$OMAKUB_USER_EMAIL"
+fi

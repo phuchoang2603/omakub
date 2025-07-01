@@ -5,9 +5,6 @@ elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
 fi
 pipx install gnome-extensions-cli --system-site-packages
 
-# Pause to assure user is ready to accept confirmations
-gum confirm "To install Gnome extensions, you need to accept some confirmations. Are you ready?"
-
 # Install new extensions
 gext install just-perfection-desktop@just-perfection
 gext install space-bar@luchrioh

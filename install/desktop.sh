@@ -8,7 +8,7 @@ if gum confirm "Do you want to install Hyprland packages?"; then
   for installer in ~/.local/share/omakub/install/desktop/hyprland/*.sh; do source "$installer"; done
 fi
 
-source ~/.local/share/omakub/bin/change-theme
+source ~/.local/share/omakub/bin/rofi-change-theme
 
 # Logout to pickup changes
 gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot

@@ -1,6 +1,7 @@
 # Install mise for managing multiple versions of languages. See https://mise.jdx.dev/
 curl https://mise.run | sh
 eval "$(mise activate bash)"
+source ~/.bashrc
 
 # Install default programming languages
 AVAILABLE_LANGUAGES=("Ruby" "Node.js" "Go" "Python" "Elixir" "Rust" "Java")
@@ -42,3 +43,5 @@ if [[ -n "$languages" ]]; then
     esac
   done
 fi
+
+source ~/.bashrc
