@@ -1,38 +1,70 @@
 #!/usr/bin/env bash
 
-notify-send "Getting list of available Wi-Fi networks..."
-# Get a list of available wifi connections and morph it into a nice-looking list
-wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
+# Use default 'rofi' if not set, and define flags
+ROFI="${ROFI:-rofi}"
+rofi_flags="-dmenu -normal-window -i -p Wi-Fi"
 
-connected=$(nmcli -fields WIFI g)
-if [[ "$connected" =~ "enabled" ]]; then
-	toggle="󰖪  Disable Wi-Fi"
-elif [[ "$connected" =~ "disabled" ]]; then
-	toggle="󰖩  Enable Wi-Fi"
-fi
+while true; do
+	# --- Data Gathering (runs each time the loop starts) ---
 
-# Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | rofi -dmenu -normal-window -i -selected-row 1 -p "Wi-Fi SSID: ")
-# Get name of connection
-read -r chosen_id <<<"${chosen_network:3}"
+	# Add a refresh option
+	refresh="  Refresh"
 
-if [ "$chosen_network" = "" ]; then
-	exit
-elif [ "$chosen_network" = "󰖩  Enable Wi-Fi" ]; then
-	nmcli radio wifi on
-elif [ "$chosen_network" = "󰖪  Disable Wi-Fi" ]; then
-	nmcli radio wifi off
-else
-	# Message to show when connection is activated successfully
-	success_message="You are now connected to the Wi-Fi network \"$chosen_id\"."
-	# Get saved connections
-	saved_connections=$(nmcli -g NAME connection)
-	if [[ $(echo "$saved_connections" | grep -w "$chosen_id") = "$chosen_id" ]]; then
-		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
+	# Get the current connection status to create the correct toggle option
+	if [[ "$(nmcli -t -f WIFI g)" =~ "enabled" ]]; then
+		toggle="󰖪  Disable Wi-Fi"
 	else
-		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(rofi -dmenu -p "Password: ")
-		fi
-		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"
+		toggle="󰖩  Enable Wi-Fi"
 	fi
-fi
+
+	# Get a formatted list of available Wi-Fi networks
+	# Icons:  (refresh),  (secured),  (open), 󰖪/󰖩 (toggle)
+	wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
+
+	# Combine the refresh, toggle, and network list for the menu
+	entries="$refresh\n$toggle\n$wifi_list"
+
+	# --- Rofi Menu ---
+	chosen_network=$(echo -e "$entries" | uniq -u | $ROFI $rofi_flags)
+
+	# --- Action Handling ---
+
+	# Exit if the user presses escape
+	if [ -z "$chosen_network" ]; then
+		exit 0
+	fi
+
+	# Use a case statement to handle the user's selection
+	case "$chosen_network" in
+	"  Refresh")
+		# The 'continue' command skips the rest of the loop and starts it from the top
+		continue
+		;;
+	"󰖩  Enable Wi-Fi")
+		nmcli radio wifi on
+		;;
+	"󰖪  Disable Wi-Fi")
+		nmcli radio wifi off
+		;;
+	*)
+		# A network was selected, so attempt to connect.
+		# Get the SSID by stripping the icon, then pipe to 'xargs' to trim whitespace.
+		ssid=$(echo "$chosen_network" | sed 's/^.. //' | xargs)
+
+		# Check if the network is already a saved connection
+		if nmcli -g NAME connection | grep -q -w "^$ssid$"; then
+			nmcli connection up id "$ssid"
+		else
+			# If it's not a saved connection, ask for a password if it's secured
+			if [[ "$chosen_network" =~ "" ]]; then
+				wifi_password=$(echo "" | $ROFI -dmenu -password -p "Password for '$ssid'")
+			fi
+			nmcli device wifi connect "$ssid" password "$wifi_password"
+		fi
+		# Exit the script after a connection attempt
+		exit 0
+		;;
+	esac
+done
+
+exit 0
