@@ -1,4 +1,36 @@
-* {
-  color: #d8dee9;
-  background-color: #2e3440;
+window#waybar {
+  background: #3b4252;
+  border: 2px solid #88c0d0;
+}
+
+tooltip {
+  background-color: #3b4252;
+  border: 2px solid #88c0d0;
+}
+
+tooltip label {
+  color: #88c0d0;
+}
+
+#workspaces button {
+  color: #88c0d0;
+  background-color: #3b4252;
+  border: 2px solid #88c0d0;
+}
+
+#workspaces button.active {
+  color: #3b4252;
+  background-color: #88c0d0;
+}
+
+#clock,
+#cpu,
+#memory,
+#network,
+#bluetooth,
+#pulseaudio,
+#battery {
+  background-color: #3b4252;
+  border: 2px solid #88c0d0;
+  color: #88c0d0;
 }

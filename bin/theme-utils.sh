@@ -23,10 +23,10 @@ apply_theme() {
     source "$OMAKUB_PATH/themes/$theme/hyprland.sh"
 
     cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/config
-    pkill -f mako && mako &
+    systemctl --user restart mako.service
 
     cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
-    pkill -f waybar && waybar &
+    systemctl --user restart waybar.service
   fi
 
   echo "$(date) - Theme switched to $theme" >>"$OMAKUB_PATH/auto-theme-switcher.log"
