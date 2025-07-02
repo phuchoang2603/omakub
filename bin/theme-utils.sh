@@ -17,9 +17,12 @@ apply_theme() {
 
   source "$OMAKUB_PATH/themes/$theme/vscode.sh"
 
-  if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ -n "$DISPLAY" ]; then
+  if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
     source "$OMAKUB_PATH/themes/$theme/gnome.sh"
-    source "$OMAKUB_PATH/themes/$theme/tophat.sh"
+  elif [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+    source "$OMAKUB_PATH/themes/$theme/hyprland.sh"
+    cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/mako.ini
+    cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
   fi
 
   echo "$(date) - Theme switched to $theme" >>"$OMAKUB_PATH/auto-theme-switcher.log"
