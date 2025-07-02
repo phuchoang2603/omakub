@@ -8,3 +8,4 @@ mkdir -p "$BACKGROUND_DEST_DIR"
 
 # Copy theme-specific wallpaper to 'current.png'
 cp "$BACKGROUND_ORG_PATH" "$BACKGROUND_DEST_PATH"
+hyprctl hyprpaper reload ,"$BACKGROUND_DEST_PATH"
