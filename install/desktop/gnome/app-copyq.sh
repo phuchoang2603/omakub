@@ -1,6 +1,5 @@
 if [ "$OMAKUB_OS_ID" == "arch" ]; then
-  paru -Rns --noconfirm --needed cliphist
-  paru -S --noconfirm --needed copyq
+  paru -S --noconfirm copyq
 elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   sudo add-apt-repository -y ppa:hluk/copyq
   sudo apt update -y

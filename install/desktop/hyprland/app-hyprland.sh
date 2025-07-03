@@ -3,10 +3,10 @@ packages=(
   hyprshot
   hyprlock
   hypridle
+  hyprsunset
   hyprpolkitagent
   hyprland-qtutils
   hyprpaper
-  cliphist
   xdg-desktop-portal-hyprland
   xdg-desktop-portal-gtk
   waybar
@@ -14,5 +14,5 @@ packages=(
   uwsm
 )
 
-paru -Rns --noconfirm copyq
 paru -S --noconfirm --needed "${packages[@]}"
+paru -S --noconfirm copyq
