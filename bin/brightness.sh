@@ -4,7 +4,7 @@
 # Send notification with current brightness level
 send_notification() {
   brightness=$(brightnessctl -m | cut -d, -f4)
-  notify-send "Brightness: $brightness" -h int:value:"${brightness//%/}" -h string:x-canonical-private-synchronous:brightness
+  notify-send "" -h int:value:"${brightness//%/}" -h string:x-canonical-private-synchronous:brightness
 }
 
 case $1 in

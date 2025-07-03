@@ -1,11 +1,6 @@
-window#waybar {
-  background: #181824;
-  border: 2px solid #7aa2f7;
-}
-
 tooltip {
   background-color: #181824;
-  border: 2px solid #7aa2f7;
+  border: 1px solid #7aa2f7;
 }
 
 tooltip label {
@@ -15,7 +10,7 @@ tooltip label {
 #workspaces button {
   color: #7aa2f7;
   background-color: #181824;
-  border: 2px solid #7aa2f7;
+  border: 1px solid #7aa2f7;
 }
 
 #workspaces button.active {
@@ -23,6 +18,7 @@ tooltip label {
   background-color: #7aa2f7;
 }
 
+#tray,
 #clock,
 #cpu,
 #memory,
@@ -31,6 +27,6 @@ tooltip label {
 #pulseaudio,
 #battery {
   background-color: #181824;
-  border: 2px solid #7aa2f7;
+  border: 1px solid #7aa2f7;
   color: #7aa2f7;
 }
