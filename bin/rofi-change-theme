@@ -17,17 +17,14 @@ entries=(
   "Gruvbox"
 )
 
-# Function to enable cron for automatic theme switching
-enable_cron() {
-  (
-    crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT"
-    echo "0 * * * * /bin/bash $AUTO_THEME_SCRIPT"
-  ) | crontab -
+# Function to enable the systemd timer for automatic theme switching
+enable_systemd_timer() {
+  systemctl --user enable --now theme-switcher.timer
 }
 
-# Function to disable cron for automatic theme switching
-disable_cron() {
-  crontab -l 2>/dev/null | grep -v "$AUTO_THEME_SCRIPT" | crontab -
+# Function to disable the systemd timer for automatic theme switching
+disable_systemd_timer() {
+  systemctl --user disable --now theme-switcher.timer
 }
 
 # Display the theme selection menu using Rofi
@@ -37,10 +34,11 @@ choice=$(printf "%s\n" "${entries[@]}" | $ROFI $rofi_flags -dmenu -i -p "Theme")
 if [ -n "$choice" ]; then
   theme_id=$(echo "$choice" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
   if [ "$theme_id" == "automatic" ]; then
-    enable_cron
-    source "$AUTO_THEME_SCRIPT"
+    enable_systemd_timer
+    # Run the script once immediately after enabling
+    bash "$AUTO_THEME_SCRIPT"
   else
-    disable_cron
+    disable_systemd_timer
     apply_theme "$theme_id"
   fi
 fi

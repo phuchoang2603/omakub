@@ -18,8 +18,9 @@ tooltip label {
   background-color: #7aa2f7;
 }
 
-#tray,
 #clock,
+#tray,
+#custom-docker,
 #cpu,
 #memory,
 #network,

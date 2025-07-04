@@ -1,6 +1,7 @@
 if [ "$OMAKUB_OS_ID" == "arch" ]; then
   paru -S --noconfirm --needed flatpak
-  paru -S --noconfirm --needed brightnessctl wl-clipboard wl-clip-persist bluez bluez-utils playerctl vlc pavucontrol wireplumber
+  paru -S --noconfirm --needed preload brightnessctl wl-clipboard wl-clip-persist bluez bluez-utils playerctl vlc pavucontrol wireplumber
+  sudo systemctl enable --now preload.service
   sudo systemctl enable --now bluetooth.service
   # brotab
   pipx install brotab

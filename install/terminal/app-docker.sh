@@ -13,7 +13,7 @@ elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
 fi
 
-sudo systemctl start docker.service
+sudo systemctl enable --now docker.service
 # Give this user privileged Docker access
 sudo usermod -aG docker ${USER}
 

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export DISPLAY=:0
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 OMAKUB_PATH="$HOME/.local/share/omakub"
 source "$OMAKUB_PATH/bin/theme-utils.sh"
 

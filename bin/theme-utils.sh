@@ -29,5 +29,5 @@ apply_theme() {
     systemctl --user restart waybar.service
   fi
 
-  echo "$(date) - Theme switched to $theme" >>"$OMAKUB_PATH/auto-theme-switcher.log"
+  notify-send "Theme Switcher" "The theme has been changed to $theme"
 }
