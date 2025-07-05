@@ -1,47 +1,98 @@
 #!/usr/bin/env bash
 
+# Path to your new grid theme
+GRID_THEME="$HOME/.config/rofi/grid.rasi"
+# Path to your wallpapers
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+# Path to Omakub installation
+OMAKUB_PATH="$HOME/.local/share/omakub"
+# Destination for the chosen pywal wallpaper
+PYWAL_WALLPAPER_PATH="$OMAKUB_PATH/themes/pywal/pywal.png"
+
 ROFI="${ROFI:-rofi}"
 rofi_flags="-normal-window"
 
-# Set the path to the Omakub directory
-OMAKUB_PATH="$HOME/.local/share/omakub"
-AUTO_THEME_SCRIPT="$OMAKUB_PATH/bin/auto-theme-switcher"
 source "$OMAKUB_PATH/bin/theme-utils.sh"
 
-# Define theme entries for Rofi
+# Theme entries for the main Rofi menu
 entries=(
+  "Select Wallpaper"
   "Automatic"
   "Tokyo Night"
   "Catppuccin"
   "Nord"
   "Gruvbox"
-  "Pywal"
 )
 
-# Function to enable the systemd timer for automatic theme switching
+# Function to enable the systemd timer
 enable_systemd_timer() {
   systemctl --user enable --now theme-switcher.timer
 }
 
-# Function to disable the systemd timer for automatic theme switching
+# Function to disable the systemd timer
 disable_systemd_timer() {
   systemctl --user disable --now theme-switcher.timer
 }
 
-# Display the theme selection menu using Rofi
+# Function to let the user select and apply a wallpaper using the thumbnailer method
+select_and_apply_wallpaper() {
+  # Check if wallpaper directory exists
+  if [ ! -d "$WALLPAPER_DIR" ]; then
+    $ROFI $rofi_flags -e "Wallpaper directory not found: $WALLPAPER_DIR"
+    exit 1
+  fi
+
+  # Generate entries using printf for reliability
+  generate_entries() {
+    find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) |
+      while read -r wallpaper; do
+        filename=$(basename "$wallpaper")
+        # Use printf for safer escape sequence handling
+        printf "%s\0icon\x1fthumbnail://%s\n" "$filename" "$wallpaper"
+      done
+  }
+
+  # Check if any wallpapers were found
+  if ! find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print -quit | grep -q .; then
+    $ROFI $rofi_flags -e "No wallpapers found in $WALLPAPER_DIR"
+    exit 1
+  fi
+
+  # Let the user choose a wallpaper. Rofi will output the filename.
+  local chosen_filename=$(generate_entries | $ROFI $rofi_flags -theme "$GRID_THEME" -dmenu -i -p "Wallpaper")
+
+  # If a wallpaper was chosen, apply it
+  if [ -n "$chosen_filename" ]; then
+    local chosen_wallpaper_path="$WALLPAPER_DIR/$chosen_filename"
+    mkdir -p "$(dirname "$PYWAL_WALLPAPER_PATH")"
+    cp "$chosen_wallpaper_path" "$PYWAL_WALLPAPER_PATH"
+    apply_theme "pywal"
+  fi
+}
+
+# --- Main Logic ---
+
+# Display the main theme selection menu
 choice=$(printf "%s\n" "${entries[@]}" | $ROFI $rofi_flags -dmenu -i -p "Theme")
 
-# Process the selected theme
+# Process the user's choice
 if [ -n "$choice" ]; then
   theme_id=$(echo "$choice" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
-  if [ "$theme_id" == "automatic" ]; then
+
+  case "$theme_id" in
+  "select-wallpaper")
+    disable_systemd_timer
+    select_and_apply_wallpaper
+    ;;
+  "automatic")
     enable_systemd_timer
-    # Run the script once immediately after enabling
-    bash "$AUTO_THEME_SCRIPT"
-  else
+    bash "$OMAKUB_PATH/bin/auto-theme-switcher"
+    ;;
+  *)
     disable_systemd_timer
     apply_theme "$theme_id"
-  fi
+    ;;
+  esac
 fi
 
 exit 0
