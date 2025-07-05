@@ -15,6 +15,7 @@ entries=(
   "Catppuccin"
   "Nord"
   "Gruvbox"
+  "Pywal"
 )
 
 # Function to enable the systemd timer for automatic theme switching

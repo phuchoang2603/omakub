@@ -10,13 +10,6 @@ apply_theme() {
     return 1
   fi
 
-  cp "$OMAKUB_PATH/themes/$theme/kitty.conf" ~/.config/kitty/theme.conf
-  kill -SIGUSR1 "$(pidof kitty)"
-  cp "$OMAKUB_PATH/themes/$theme/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
-  cp "$OMAKUB_PATH/themes/$theme/rofi.rasi" ~/.config/rofi/shared/colors.rasi
-
-  source "$OMAKUB_PATH/themes/$theme/vscode.sh"
-
   if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
     source "$OMAKUB_PATH/themes/$theme/gnome.sh"
   elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
@@ -28,6 +21,11 @@ apply_theme() {
     cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
     systemctl --user restart waybar.service
   fi
+
+  cp "$OMAKUB_PATH/themes/$theme/kitty.conf" ~/.config/kitty/theme.conf
+  kill -SIGUSR1 "$(pidof kitty)"
+  cp "$OMAKUB_PATH/themes/$theme/neovim.lua" ~/.config/nvim/lua/plugins/theme.lua
+  cp "$OMAKUB_PATH/themes/$theme/rofi.rasi" ~/.config/rofi/shared/colors.rasi
 
   notify-send "Theme Switcher" "The theme has been changed to $theme"
 }
