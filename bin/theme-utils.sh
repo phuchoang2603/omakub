@@ -22,7 +22,7 @@ apply_theme() {
   elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
     source "$OMAKUB_PATH/themes/$theme/hyprland.sh"
 
-    cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/config
+    cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/colors
     systemctl --user restart mako.service
 
     cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
