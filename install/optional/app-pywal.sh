@@ -1,1 +1,0 @@
-pipx install pywal16
