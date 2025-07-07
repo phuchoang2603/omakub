@@ -2,12 +2,16 @@
 
 # Check if the Docker daemon is running
 if ! docker info &>/dev/null; then
-  echo '{"text": "Down", "tooltip": "Docker daemon is not running"}'
   exit 0
 fi
 
 # Get container counts
 running_count=$(docker ps --format '{{.ID}}' | wc -l)
+
+if [ "$running_count" -eq 0 ]; then
+  exit 0
+fi
+
 total_count=$(docker ps -a --format '{{.ID}}' | wc -l)
 
 # Prepare the tooltip text
