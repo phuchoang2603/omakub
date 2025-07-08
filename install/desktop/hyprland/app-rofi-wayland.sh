@@ -1,6 +1,5 @@
 packages=(
   rofi-wayland
-  papirus-icon-theme
   rofi-calc
 )
 

@@ -1,4 +1,2 @@
-git clone https://github.com/vinceliuice/grub2-themes.git ~/repos/grub2-themes
-cd ~/repos/grub2-themes || return 1
-sudo ./install.sh -t vimix -b
-cd - || return 1
+git clone https://github.com/vinceliuice/Graphite-gtk-theme.git --depth 1 ~/repos/Graphite-gtk-theme
+sudo ~/repos/Graphite-gtk-theme/other/grub2/install.sh -b

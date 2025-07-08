@@ -15,3 +15,6 @@ elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   cd -
 
 fi
+
+# Set Cascadia Mono as the default monospace font
+gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaMono Nerd Font 11'
