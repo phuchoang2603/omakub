@@ -1,14 +1,15 @@
 return {
 	{
-		"uZer/pywal16.nvim",
-		config = function()
-			vim.cmd.colorscheme("pywal16")
-		end,
+		"RedsXDD/neopywal.nvim",
+		name = "neopywal",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "pywal16",
+			colorscheme = "neopywal",
 		},
 	},
 }

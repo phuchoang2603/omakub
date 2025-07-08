@@ -1,36 +1,21 @@
-OMAKUB_THEME_BACKGROUND="pywal/pywal.png"
-COLORS_FILE="$HOME/.cache/wal/colors"
-THEME_DIR="$OMAKUB_PATH/themes/pywal"
+OMAKUB_THEME_BACKGROUND="pywal/current.png"
 
 wal -i "$OMAKUB_PATH/themes/$OMAKUB_THEME_BACKGROUND" -s -t
 
-mapfile -t colors <"$COLORS_FILE"
+original_filename=$(basename "$(readlink "$OMAKUB_PATH/themes/$OMAKUB_THEME_BACKGROUND")")
+OMAKUB_THEME_COLOR="${original_filename%%-*}"
 
-TEXT_HEX="${colors[0]}"
-PRIMARY_HEX="${colors[1]}"
+source ~/.cache/wal/colors.sh
 
-OMAKUB_TEXT_COLOR="rgba(${TEXT_HEX#\#}FF)"
-OMAKUB_PRIMARY_COLOR="rgba(${PRIMARY_HEX#\#}FF)"
+TEXT_HEX="$color0"
+PRIMARY_HEX="$color1"
 
 cp ~/.cache/wal/colors-kitty.conf "$OMAKUB_PATH/themes/pywal/kitty.conf"
 cp ~/.cache/wal/colors-waybar.css "$OMAKUB_PATH/themes/pywal/waybar.css"
-
-cat <<EOF >"$THEME_DIR/mako.ini"
-text-color=${colors[7]}
-border-color=${colors[1]}
-background-color=${colors[0]}
-progress-color=${colors[2]}
-EOF
-
-cat <<EOF >"$THEME_DIR/rofi.rasi"
-* {
-    background:     ${colors[0]};
-    background-alt: ${colors[0]};
-    foreground:     ${colors[7]};
-    selected:       ${colors[2]};
-    active:         ${colors[1]};
-    urgent:         ${colors[3]};
-}
-EOF
+cp ~/.cache/wal/colors-rofi-temp.rasi "$OMAKUB_PATH/themes/pywal/rofi.rasi"
+cp ~/.cache/wal/colors-mako-temp "$OMAKUB_PATH/themes/pywal/mako.ini"
+cp ~/.cache/wal/colors-spicetify-sleek.ini ~/.config/spicetify/Themes/Sleek/color.ini
+jq --arg newColor "$PRIMARY_HEX" '.accentColor = $newColor' ~/repos/personal/obsidian/.obsidian/appearance.json >tmp.json && mv tmp.json ~/repos/personal/obsidian/.obsidian/appearance.json
+~/.spicetify/spicetify apply
 
 source $OMAKUB_PATH/themes/set-hyprland-theme.sh

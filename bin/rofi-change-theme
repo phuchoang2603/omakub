@@ -7,7 +7,7 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 # Path to Omakub installation
 OMAKUB_PATH="$HOME/.local/share/omakub"
 # Destination for the chosen pywal wallpaper
-PYWAL_WALLPAPER_PATH="$OMAKUB_PATH/themes/pywal/pywal.png"
+CURRENT_WALLPAPER_LINK="$OMAKUB_PATH/themes/pywal/current.png"
 
 ROFI="${ROFI:-rofi}"
 rofi_flags="-normal-window"
@@ -64,8 +64,10 @@ select_and_apply_wallpaper() {
   # If a wallpaper was chosen, apply it
   if [ -n "$chosen_filename" ]; then
     local chosen_wallpaper_path="$WALLPAPER_DIR/$chosen_filename"
-    mkdir -p "$(dirname "$PYWAL_WALLPAPER_PATH")"
-    cp "$chosen_wallpaper_path" "$PYWAL_WALLPAPER_PATH"
+
+    # Create/update the symlink to point to the chosen wallpaper.
+    ln -sf "$chosen_wallpaper_path" "$CURRENT_WALLPAPER_LINK"
+
     apply_theme "pywal"
   fi
 }

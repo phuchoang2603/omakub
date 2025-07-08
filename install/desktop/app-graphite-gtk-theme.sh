@@ -10,7 +10,6 @@ if [ "$OMAKUB_OS_ID" == "arch" ]; then
     gnome-themes-extra
     gtk-engine-murrine
     sassc
-    papirus-icon-theme
   )
 
   paru -S --noconfirm --needed "${packages[@]}"
@@ -27,17 +26,11 @@ elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
     sassc
   )
 
-  # papirus icons
-  sudo add-apt-repository ppa:papirus/papirus
-  sudo apt-get update
-  sudo apt-get install -y papirus-icon-theme
-
   sudo apt-get install -y "${packages[@]}"
 fi
 
-git clone https://github.com/vinceliuice/Graphite-gtk-theme.git --depth 1 ~/repos/Graphite-gtk-theme
-sudo ~/repos/Graphite-gtk-theme/install.sh -d /usr/share/themes -t -c dark -s standard -l --tweaks black rimless normal
+wget -qO- https://git.io/papirus-icon-theme-install | env DESTDIR="$HOME/.icons" sh
+wget -qO- https://git.io/papirus-folders-install | env PREFIX=$HOME/.local sh
 
-gsettings set org.gnome.desktop.interface gtk-theme "Graphite-Dark"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+git clone https://github.com/vinceliuice/Graphite-gtk-theme.git --depth 1 ~/repos/Graphite-gtk-theme
+~/repos/Graphite-gtk-theme/install.sh -d $HOME/.themes -t -c dark -s standard -l --tweaks black rimless normal
