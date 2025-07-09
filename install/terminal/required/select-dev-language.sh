@@ -1,5 +1,7 @@
 # Install mise for managing multiple versions of languages. See https://mise.jdx.dev/
-curl https://mise.run | sh
+if ! command -v mise &>/dev/null; then
+  curl https://mise.run | sh
+fi
 source ~/.bashrc
 
 # Install default programming languages
