@@ -8,6 +8,8 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 OMAKUB_PATH="$HOME/.local/share/omakub"
 # Destination for the chosen pywal wallpaper
 CURRENT_WALLPAPER_LINK="$OMAKUB_PATH/themes/pywal/current.png"
+# Path for user systemd services
+SYSTEMD_USER_DIR="$HOME/.config/systemd/user"
 
 ROFI="${ROFI:-rofi}"
 rofi_flags="-normal-window"
@@ -26,12 +28,48 @@ entries=(
 
 # Function to enable the systemd timer
 enable_systemd_timer() {
-  systemctl --user enable --now theme-switcher.timer
+  if command -v systemctl &>/dev/null; then
+    # Ensure the user systemd directory exists
+    mkdir -p "$SYSTEMD_USER_DIR"
+
+    # 1. Create theme-switcher.service
+    cat >"$SYSTEMD_USER_DIR/theme-switcher.service" <<EOF
+[Unit]
+Description=Apply theme based on time of day
+
+[Service]
+Type=oneshot
+ExecStart=$OMAKUB_PATH/bin/auto-theme-switcher
+EOF
+
+    # 2. Create theme-switcher.timer
+    cat >"$SYSTEMD_USER_DIR/theme-switcher.timer" <<EOF
+[Unit]
+Description=Run theme switcher hourly
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+    # Reload systemd daemon to pick up new/changed unit files, then enable and start
+    systemctl --user daemon-reload
+    systemctl --user enable --now theme-switcher.timer
+  else
+    echo "Warning: systemctl not found. Cannot enable timer or create service files." >&2
+  fi
 }
 
 # Function to disable the systemd timer
 disable_systemd_timer() {
-  systemctl --user disable --now theme-switcher.timer
+  if command -v systemctl &>/dev/null; then
+    systemctl --user disable --now theme-switcher.timer
+  else
+    echo "Warning: systemctl not found. Cannot disable timer." >&2
+  fi
 }
 
 # Function to let the user select and apply a wallpaper using the thumbnailer method
@@ -88,6 +126,7 @@ if [ -n "$choice" ]; then
     ;;
   "automatic")
     enable_systemd_timer
+    # Execute the auto-theme-switcher script immediately after enabling the timer
     bash "$OMAKUB_PATH/bin/auto-theme-switcher"
     ;;
   *)
