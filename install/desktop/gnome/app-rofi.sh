@@ -1,5 +1,4 @@
 if [ "$OMAKUB_OS_ID" == "arch" ]; then
-  paru -Rns --noconfirm rofi-wayland rofi-calc
   paru -S --noconfirm --needed \
     rofi rofi-calc
 elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
