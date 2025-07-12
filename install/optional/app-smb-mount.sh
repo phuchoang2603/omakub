@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-# Install required package
-if [ "$OMAKUB_OS_ID" == "arch" ]; then
-  paru -S --noconfirm --needed cifs-utils || exit 1
-elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
-  sudo apt-get install -y cifs-utils
-fi
+paru -S --noconfirm --needed cifs-utils
 
 home="$HOME"
 
