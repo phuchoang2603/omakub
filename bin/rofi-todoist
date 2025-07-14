@@ -100,38 +100,50 @@ function task_menu {
 
 # Function to list tasks
 function list_tasks {
-    local filter_arg="$1" # Can be "today", "Inbox", etc.
+    local filter_arg="$1" # Can be "today", "#Project", "@Label", etc.
 
     "$todoist_command" sync # Synchronize before listing
 
     local tasklist=""
     if [ -n "$filter_arg" ]; then
-        tasklist=$("$todoist_command" l -f "$filter_arg" | cut -d' ' -f 1,3,4,8-)
+        tasklist=$("$todoist_command" --csv l -f "$filter_arg")
     else
-        tasklist=$("$todoist_command" l | cut -d' ' -f 1,3,4,8-)
+        tasklist=$("$todoist_command" --csv l)
     fi
 
-    local rofi_list_options=$(printf "%s" "$tasklist")
+    # Format for Rofi: "Task Name (Project, Labels, Date) [ID]"
+    local rofi_list_options=$(echo "$tasklist" | awk -F, '{
+        details = "";
+        if ($4) details = $4;
+        if ($5) details = (details ? details ", " : "") $5;
+        if ($3) details = (details ? details " | " : "") $3;
+        if (details)
+            printf "%s (%s) [%s]\n", $6, details, $1;
+        else
+            printf "%s [%s]\n", $6, $1;
+    }')
 
-    local action=$(printf "%s" "$rofi_list_options" | rofi -dmenu -i -p 'Task' -mesg 'Pick a task:' "$ROFI_FLAGS" | cut -d' ' -f1)
+    local selection=$(echo -e "$rofi_list_options" | rofi -dmenu -i -p 'Task' -mesg 'Pick a task:' "$ROFI_FLAGS")
 
     # Handle Escape explicitly
-    if [ -z "$action" ]; then
+    if [ -z "$selection" ]; then
         main_menu
         return
     fi
 
-    local selected_task_line=$(printf "%s" "$tasklist" | grep "^$action ")
-    local selected_task_name=$(echo "$selected_task_line" | sed -E 's/^[0-9]+( [0-9]{2}\/[0-9]{2}\/[0-9]{2}\([A-Za-z]+\) [0-9]{2}:[0-9]{2})? (.*)/\2/' | sed -E 's/^([#@][^ ]*( [^ ]+)*) (.*)/\3 (\1)/')
-    if [[ -z "$selected_task_name" || "$selected_task_name" == *'( )'* ]]; then
-        selected_task_name=$(echo "$selected_task_line" | sed -E 's/^[0-9]+( [0-9]{2}\/[0-9]{2}\/[0-9]{2}\([A-Za-z]+\) [0-9]{2}:[0-9]{2})? (.*)/\2/')
+    local taskid=$(echo "$selection" | grep -o '\[.*\]' | tr -d '[]')
+    local taskname=$(echo "$selection" | sed 's/ (.*) \[.*\]//' | sed 's/ \[.*\]//')
+
+    if [[ -z "$taskid" ]]; then
+        main_menu
+        return
     fi
 
-    if [[ -z "$selected_task_name" ]]; then
-        selected_task_name="Task ID $action"
+    if [[ -z "$taskname" ]]; then
+        taskname="Task ID $taskid"
     fi
 
-    task_menu "$action" "$selected_task_name"
+    task_menu "$taskid" "$taskname"
 }
 
 # Function to list projects
@@ -139,17 +151,20 @@ function list_projects {
     "$todoist_command" sync
     local projectlist=$("$todoist_command" projects | cut -d' ' -f 2)
 
-    # Removed "Go back to Main Menu" option
-    local rofi_list_options=$(printf "%s" "${projectlist}") # Adjusted printf
+    local rofi_list_options=$(printf "%s" "${projectlist}")
 
     local action=$(printf "%s" "$rofi_list_options" | rofi -dmenu -i -p 'Project' -mesg 'Filter by project:' "$ROFI_FLAGS")
 
+    # Clean the selected action to remove any invisible characters
+    local clean_action=$(echo "$action" | tr -d '[:cntrl:]')
+
     # Handle Escape explicitly
-    if [ -z "$action" ]; then
+    if [ -z "$clean_action" ]; then
         main_menu
         return
     else
-        list_tasks "$action" # Pass project name as filter to list_tasks
+        # Pass project name as filter to list_tasks
+        list_tasks "#$clean_action"
     fi
 }
 
@@ -162,12 +177,16 @@ function list_labels {
 
     local action=$(printf "%s" "$rofi_list_options" | rofi -dmenu -i -p 'label' -mesg 'Filter by label:' "$ROFI_FLAGS")
 
+    # Clean the selected action to remove any invisible characters
+    local clean_action=$(echo "$action" | tr -d '[:cntrl:]')
+
     # Handle Escape explicitly
-    if [ -z "$action" ]; then
+    if [ -z "$clean_action" ]; then
         main_menu
         return
     else
-        list_tasks "$action"
+        # Pass the clean label name directly to the filter
+        list_tasks "$clean_action"
     fi
 }
 
