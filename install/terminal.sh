@@ -1,3 +1,11 @@
+source ~/.local/share/omakub/check-os.sh
+
+read -p "Enter github username: " OMAKUB_USER_NAME
+export OMAKUB_USER_NAME
+
+read -p "Enter email address: " OMAKUB_USER_EMAIL
+export OMAKUB_USER_EMAIL
+
 # Update packages and install package manager
 if [ "$OMAKUB_OS_ID" == "arch" ]; then
   sudo pacman -Syu --noconfirm
