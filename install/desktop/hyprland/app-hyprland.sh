@@ -4,6 +4,7 @@ packages=(
   hyprlock
   hypridle
   hyprsunset
+  hyprpicker
   hyprpolkitagent
   hyprland-qtutils
   hyprpaper

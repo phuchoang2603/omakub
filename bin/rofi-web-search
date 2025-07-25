@@ -18,7 +18,7 @@ declare -A urls=(
     ["WhatsApp"]="https://web.whatsapp.com/"
     ["Zalo"]="https://chat.zalo.me/"
     ["Discord"]="https://discord.com/channels/@me"
-    ["Todo"]="https://to-do.office.com/tasks/inbox"
+    ["Todo"]="https://app.todoist.com/app/inbox"
     ["Github personal"]="https://github.com/phuchoang2603?tab=repositories&q="
     ["Github global"]="https://github.com/search?q="
 )
