@@ -1,6 +1,9 @@
 packages=(
   hyprland
   hyprshot
+  tesseract
+  tesseract-data-eng
+  tesseract-data-vie
   hyprlock
   hypridle
   hyprsunset
