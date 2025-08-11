@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if command -v mise &>/dev/null; then
-  eval "$(mise env -s bash)" 2>/dev/null
+    eval "$(mise env -s bash)" 2>/dev/null
 fi
 
 if ! todoist list &>/dev/null; then
-  printf '{"text": "ERR: Todoist", "tooltip": "Todoist CLI not found or not configured. (Check mise or API token)"}\n'
-  exit 0
+    printf '{"text": "ERR: Todoist", "tooltip": "Todoist CLI not found or not configured. (Check mise or API token)"}\n'
+    exit 0
 fi
 
 # --- Main Logic ---
@@ -18,8 +18,8 @@ ALL_TEXT_ONLY_NAMES=()       # Stores tasks as "Name" for the main text display
 raw_task_output=$(todoist --csv list -f "@important" 2>/dev/null)
 
 if [ -z "$raw_task_output" ]; then
-  printf '{"text": "No important tasks", "tooltip": "No tasks found with @important label."}\n'
-  exit 0
+    printf '{"text": "Chilling", "tooltip": "No tasks found with @important label."}\n'
+    exit 0
 fi
 
 # Process each CSV line using AWK for robust parsing and formatting.
@@ -95,16 +95,16 @@ BEGIN { FS = "," } # Set field separator to comma
 
 # Read parsed output from awk into arrays (pairs of tooltip_string and text_name)
 while IFS= read -r current_tooltip_string && IFS= read -r current_text_name; do
-  if [[ -n "$current_tooltip_string" ]]; then # Ensure tooltip string is not empty
-    ALL_FORMATTED_FOR_TOOLTIP+=("$current_tooltip_string")
-    ALL_TEXT_ONLY_NAMES+=("$current_text_name")
-  fi
+    if [[ -n "$current_tooltip_string" ]]; then # Ensure tooltip string is not empty
+        ALL_FORMATTED_FOR_TOOLTIP+=("$current_tooltip_string")
+        ALL_TEXT_ONLY_NAMES+=("$current_text_name")
+    fi
 done <<<"$parsed_output_lines"
 
 # Get the last task name for the main Waybar text display
 LAST_TASK_FOR_TEXT="No important tasks."
 if [ "${#ALL_TEXT_ONLY_NAMES[@]}" -gt 0 ]; then
-  LAST_TASK_FOR_TEXT="${ALL_TEXT_ONLY_NAMES[-1]}"
+    LAST_TASK_FOR_TEXT="${ALL_TEXT_ONLY_NAMES[-1]}"
 fi
 
 # Create the full tooltip string by joining all formatted tasks with newlines
@@ -116,7 +116,7 @@ escaped_tooltip=$(printf "%s" "$TOOLTIP_CONTENT" | sed 's/\\/\\\\/g; s/"/\\"/g' 
 
 # Output the final, manually-crafted JSON for Waybar
 printf '{"text": "%s", "tooltip": "%s"}\n' \
-  "$escaped_text" \
-  "$escaped_tooltip"
+    "$escaped_text" \
+    "$escaped_tooltip"
 
 exit 0
