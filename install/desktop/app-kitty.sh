@@ -1,5 +1,5 @@
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
-  launch=n
+  launch=n installer=nightly
 
 # Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
 # your system-wide PATH)
