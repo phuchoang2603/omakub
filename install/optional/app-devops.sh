@@ -40,4 +40,8 @@ else
   echo "✅ kubectx is already installed."
 fi
 
+# Google Cloud SDK
 paru -S --noconfirm --needed google-cloud-cli-lite google-cloud-cli-gke-gcloud-auth-plugin
+
+# AWS CLI
+paru -S --noconfirm --needed aws-cli-v2
