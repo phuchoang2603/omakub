@@ -1,21 +1,12 @@
 packages=(
-  hyprland
+  hyprland-meta-git
   hyprshot
-  hyprlock
-  hypridle
-  hyprsunset
-  hyprpicker
-  hyprpolkitagent
-  hyprland-qtutils
-  hyprpaper
-  xdg-desktop-portal-hyprland
-  xdg-desktop-portal-gtk
   waybar
   mako
   uwsm
 )
 
-paru -S --noconfirm --needed "${packages[@]}"
+paru -S --needed "${packages[@]}"
 
 systemctl --user enable --now hypridle.service
 systemctl --user enable --now hyprpaper.service
