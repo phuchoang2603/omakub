@@ -11,13 +11,13 @@ fi
 sudo cp ~/.config/libinput.conf /etc/libinput.conf
 
 # build the project
-cd ~/repos/libinput-config
+cd ~/repos/libinput-config || return
 meson build
-cd -
-cd ~/repos/libinput-config/build
+cd - || return
+cd ~/repos/libinput-config/build || return
 ninja
 sudo ninja install
-cd -
+cd - || return
 
 # Fusuma is a multi-touch gesture recognizer for Linux. https://github.com/iberianpig/fusuma
 sudo gpasswd -a $USER input
