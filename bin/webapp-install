@@ -37,7 +37,7 @@ fi
 
 browser=$(xdg-settings get default-web-browser)
 browser_exec=${browser%.desktop}
-EXEC_COMMAND="$browser_exec $APP_URL"
+EXEC_COMMAND="$browser_exec --new-window $APP_URL"
 
 # Create application .desktop file
 DESKTOP_FILE="$HOME/.local/share/applications/$APP_NAME.desktop"
