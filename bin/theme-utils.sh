@@ -10,17 +10,13 @@ apply_theme() {
     return 1
   fi
 
-  if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
-    source "$OMAKUB_PATH/themes/$theme/gnome.sh"
-  elif [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
-    source "$OMAKUB_PATH/themes/$theme/hyprland.sh"
+  source "$OMAKUB_PATH/themes/$theme/hyprland.sh"
 
-    cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/colors
-    systemctl --user restart mako.service
+  cp "$OMAKUB_PATH/themes/$theme/mako.ini" ~/.config/mako/colors
+  systemctl --user restart mako.service
 
-    cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
-    systemctl --user restart waybar.service
-  fi
+  cp "$OMAKUB_PATH/themes/$theme/waybar.css" ~/.config/waybar/waybar.css
+  systemctl --user restart waybar.service
 
   cp "$OMAKUB_PATH/themes/$theme/kitty.conf" ~/.config/kitty/theme.conf
   kill -SIGUSR1 "$(pidof kitty)"
