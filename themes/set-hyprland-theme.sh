@@ -28,6 +28,9 @@ systemctl --user restart hyprpaper.service
 OMAKUB_TEXT_COLOR="rgba(${TEXT_HEX#\#}FF)"
 OMAKUB_PRIMARY_COLOR="rgba(${PRIMARY_HEX#\#}FF)"
 
+# Obsidian setup
+jq --arg newColor "$PRIMARY_HEX" '.accentColor = $newColor' ~/repos/personal/obsidian/.obsidian/appearance.json >tmp.json && mv tmp.json ~/repos/personal/obsidian/.obsidian/appearance.json
+
 HYPR_COLORS_CONF="$HOME/.config/hypr/colors.conf"
 sed -i "s|^\$primary.*|\$primary = ${OMAKUB_PRIMARY_COLOR}|" "$HYPR_COLORS_CONF"
 sed -i "s|^\$text.*|\$text = ${OMAKUB_TEXT_COLOR}|" "$HYPR_COLORS_CONF"
