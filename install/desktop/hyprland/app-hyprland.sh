@@ -1,3 +1,5 @@
+# paru -Rdd $(pacman -Qsq "hypr|aqua")
+
 packages=(
   hyprland-meta-git
   hyprshot
@@ -6,7 +8,7 @@ packages=(
   uwsm
 )
 
-paru -S --needed "${packages[@]}"
+paru -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now hypridle.service
 systemctl --user enable --now hyprpaper.service

@@ -2,13 +2,13 @@ if [ "$OMAKUB_OS_ID" == "arch" ]; then
   paru -S --noconfirm --needed \
     base-devel autoconf bison clang pkgconf meson \
     bash bash-completion tldr cronie man-db man-pages \
-    ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat powertop btop eza \
+    ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat powertop btop eza tree \
     python-pipx python-pip
 elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   sudo apt install -y \
     build-essential autoconf bison clang pkg-config meson tldr \
     libffi-dev libgdbm-dev libjemalloc2 libncurses5-dev libreadline-dev libssl-dev libyaml-dev zlib1g-dev \
-    ffmpeg jq poppler-utils fd-find ripgrep zoxide imagemagick bat powertop btop eza \
+    ffmpeg jq poppler-utils fd-find ripgrep zoxide imagemagick bat powertop btop eza tree \
     pipx python3-pip
 
   if ! command -v bat &>/dev/null; then
