@@ -1,3 +1,4 @@
+#!/bin/bash
 # paru -Rdd $(pacman -Qsq "hypr|aqua")
 
 packages=(
@@ -8,7 +9,7 @@ packages=(
   uwsm
 )
 
-paru -S --needed --noconfirm "${packages[@]}"
+# paru -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now hypridle.service
 systemctl --user enable --now hyprpaper.service
@@ -40,6 +41,7 @@ Description=Run Hyprland sunset manager every 1 minutes
 OnBootSec=15s
 OnUnitActiveSec=15min
 AccuracySec=1s
+Persistent=true
 
 [Install]
 WantedBy=timers.target
