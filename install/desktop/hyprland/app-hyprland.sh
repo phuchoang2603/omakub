@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+paru -Rdd $(pacman -Qsq "hypr|aqua")
 PKG_DIR="$HOME/repos/pkgs"
 RESTORE_FILE="$HOME/repos/pkgs/pkgs_restore.txt"
 PKG_LIST=(
@@ -31,9 +32,9 @@ mkdir -p "$PKG_DIR"
 record_installed_version() {
   local pkg="$1"
   local dir="$PKG_DIR/$pkg"
-  if pacman -Q "$pkg" &>/dev/null; then
+  if paru -Q "$pkg" &>/dev/null; then
     local version
-    version=$(pacman -Q "$pkg" | awk '{print $2}')
+    version=$(paru -Q "$pkg" | awk '{print $2}')
     echo "$pkg $version $dir" >>"$RESTORE_FILE"
   fi
 }
@@ -61,9 +62,9 @@ restore_pkgs() {
     echo "Restoring $pkg=$version from $dir..."
     tarball=$(ls "$dir"/*.pkg.tar.* 2>/dev/null | grep "$pkg-$version" || true)
     if [[ -f "$tarball" ]]; then
-      sudo pacman -U --noconfirm "$tarball"
+      sudo paru -U --noconfirm "$tarball"
     else
-      sudo pacman -S --noconfirm "$pkg=$version"
+      sudo paru -S --noconfirm "$pkg=$version"
     fi
   done <"$RESTORE_FILE"
 }

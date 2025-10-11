@@ -1,6 +1,4 @@
 #!/bin/bash
-# paru -Rdd $(pacman -Qsq "hypr|aqua")
-
 packages=(
   waybar
   mako
