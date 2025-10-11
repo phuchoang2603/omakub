@@ -1,51 +1,84 @@
-#!/bin/bash
-# paru -Rdd $(pacman -Qsq "hypr|aqua")
+#!/usr/bin/env bash
+set -euo pipefail
 
-packages=(
-  hyprland-meta-git
-  hyprshot
-  waybar
-  mako
-  uwsm
+PKG_DIR="$HOME/repos/pkgs"
+RESTORE_FILE="$HOME/repos/pkgs/pkgs_restore.txt"
+PKG_LIST=(
+  hyprutils-git
+  hyprgraphics-git
+  hyprwayland-scanner-git
+  hyprland-protocols-git
+  hyprlang-git
+  hyprcursor-git
+  hyprland-qt-support-git
+  hyprland-qtutils-git
+  aquamarine-git
+  hyprland-git
+  hypridle-git
+  hyprlock-git
+  hyprpaper-git
+  hyprpolkitagent-git
+  hyprshot-git
+  xdg-desktop-portal-hyprland-git
+  hyprpicker-git
+  hyprqt6engine-git
+  hyprsunset-git
+  hyprsysteminfo-git
 )
 
-paru -S --needed --noconfirm "${packages[@]}"
+mkdir -p "$PKG_DIR"
 
-systemctl --user enable --now hypridle.service
-systemctl --user enable --now hyprpaper.service
-systemctl --user enable --now hyprpolkitagent.service
-systemctl --user enable --now hyprsunset.service
-systemctl --user enable --now mako.service
-systemctl --user enable --now waybar.service
+record_installed_version() {
+  local pkg="$1"
+  local dir="$PKG_DIR/$pkg"
+  if pacman -Q "$pkg" &>/dev/null; then
+    local version
+    version=$(pacman -Q "$pkg" | awk '{print $2}')
+    echo "$pkg $version $dir" >>"$RESTORE_FILE"
+  fi
+}
 
-# Create hyprsunset-manager.service
-SYSTEMD_USER_DIR="$HOME/.config/systemd/user"
-mkdir -p "$SYSTEMD_USER_DIR"
+fetch_pkgbuild() {
+  local pkg="$1"
+  local dir="$PKG_DIR/$pkg"
+  mkdir -p "$dir"
+  echo "Fetching PKGBUILD for $pkg..."
+  curl -fsSL "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=${pkg}" -o "$dir/PKGBUILD"
+}
 
-cat >"$SYSTEMD_USER_DIR/hyprsunset-manager.service" <<EOF
-[Unit]
-Description=Apply blue light filter based on time of day
-After=graphical-session.target
-PartOf=graphical-session.target
+install_pkg() {
+  local pkg="$1"
+  local dir="$PKG_DIR/$pkg"
+  echo "Building $pkg..."
+  cd "$dir"
+  makepkg -si --noconfirm --cleanbuild --skippgpcheck
+  cd - >/dev/null
+}
 
-[Service]
-Type=oneshot
-ExecStart=%h/.local/share/omakub/bin/hyprsunset-manager.sh
-EOF
+restore_pkgs() {
+  echo "Restoring..."
+  while IFS=" " read -r pkg version dir; do
+    echo "Restoring $pkg=$version from $dir..."
+    tarball=$(ls "$dir"/*.pkg.tar.* 2>/dev/null | grep "$pkg-$version" || true)
+    if [[ -f "$tarball" ]]; then
+      sudo pacman -U --noconfirm "$tarball"
+    else
+      sudo pacman -S --noconfirm "$pkg=$version"
+    fi
+  done <"$RESTORE_FILE"
+}
 
-cat >"$SYSTEMD_USER_DIR/hyprsunset-manager.timer" <<EOF
-[Unit]
-Description=Run Hyprland sunset manager every 1 minutes
+if [[ "${1-}" == "restore" ]]; then
+  restore_pkgs
+  exit 0
+fi
 
-[Timer]
-OnBootSec=15s
-OnUnitActiveSec=15min
-AccuracySec=1s
-Persistent=true
+>"$RESTORE_FILE"
 
-[Install]
-WantedBy=timers.target
-EOF
+for pkg in "${PKG_LIST[@]}"; do
+  record_installed_version "$pkg"
+  fetch_pkgbuild "$pkg"
+  install_pkg "$pkg"
+done
 
-systemctl --user daemon-reload
-systemctl --user enable --now hyprsunset-manager.timer
+echo "Done."
