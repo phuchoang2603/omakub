@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-paru -Rdd $(pacman -Qsq "hypr|aqua")
+echo "Requesting root privileges for the duration of the script..."
+sudo -v
+
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
+
+paru -Rdd --noconfirm $(pacman -Qsq "hypr|aqua") || true
+
 PKG_DIR="$HOME/repos/pkgs"
 RESTORE_FILE="$HOME/repos/pkgs/pkgs_restore.txt"
 PKG_LIST=(
@@ -50,7 +60,7 @@ fetch_pkgbuild() {
 install_pkg() {
   local pkg="$1"
   local dir="$PKG_DIR/$pkg"
-  echo "Building $pkg..."
+  echo "Building and installing $pkg..."
   cd "$dir"
   makepkg -si --noconfirm --cleanbuild --skippgpcheck
   cd - >/dev/null
