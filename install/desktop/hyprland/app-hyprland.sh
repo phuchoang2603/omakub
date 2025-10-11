@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Requesting root privileges for the duration of the script..."
 sudo -v
-
-while true; do
-  sudo -n true
-  sleep 60
-  kill -0 "$$" || exit
-done 2>/dev/null &
 
 paru -Rdd --noconfirm $(pacman -Qsq "hypr|aqua") || true
 
 PKG_DIR="$HOME/repos/pkgs"
-RESTORE_FILE="$HOME/repos/pkgs/pkgs_restore.txt"
 PKG_LIST=(
   hyprutils-git
   hyprgraphics-git
@@ -37,17 +29,10 @@ PKG_LIST=(
   hyprsysteminfo-git
 )
 
-mkdir -p "$PKG_DIR"
+# Array to hold the paths of the final built packages
+BUILT_PACKAGES=()
 
-record_installed_version() {
-  local pkg="$1"
-  local dir="$PKG_DIR/$pkg"
-  if paru -Q "$pkg" &>/dev/null; then
-    local version
-    version=$(paru -Q "$pkg" | awk '{print $2}')
-    echo "$pkg $version $dir" >>"$RESTORE_FILE"
-  fi
-}
+mkdir -p "$PKG_DIR"
 
 fetch_pkgbuild() {
   local pkg="$1"
@@ -57,39 +42,33 @@ fetch_pkgbuild() {
   curl -fsSL "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=${pkg}" -o "$dir/PKGBUILD"
 }
 
-install_pkg() {
+build_pkg() {
   local pkg="$1"
   local dir="$PKG_DIR/$pkg"
-  echo "Building and installing $pkg..."
+  echo "Building $pkg..."
   cd "$dir"
-  makepkg -si --noconfirm --cleanbuild --skippgpcheck
+  makepkg -s --noconfirm --cleanbuild --skippgpcheck
+  local tarball
+  tarball=$(find . -maxdepth 1 -name "*.pkg.tar.zst" -print -quit)
+  if [[ -n "$tarball" ]]; then
+    BUILT_PACKAGES+=("$dir/$tarball")
+  else
+    echo "Error: Could not find built package for $pkg in $dir" >&2
+    exit 1
+  fi
   cd - >/dev/null
 }
 
-restore_pkgs() {
-  echo "Restoring..."
-  while IFS=" " read -r pkg version dir; do
-    echo "Restoring $pkg=$version from $dir..."
-    tarball=$(ls "$dir"/*.pkg.tar.* 2>/dev/null | grep "$pkg-$version" || true)
-    if [[ -f "$tarball" ]]; then
-      sudo paru -U --noconfirm "$tarball"
-    else
-      sudo paru -S --noconfirm "$pkg=$version"
-    fi
-  done <"$RESTORE_FILE"
-}
-
-if [[ "${1-}" == "restore" ]]; then
-  restore_pkgs
-  exit 0
-fi
-
->"$RESTORE_FILE"
-
 for pkg in "${PKG_LIST[@]}"; do
-  record_installed_version "$pkg"
   fetch_pkgbuild "$pkg"
-  install_pkg "$pkg"
+  build_pkg "$pkg"
 done
+
+if [ ${#BUILT_PACKAGES[@]} -gt 0 ]; then
+  echo "Installing all built packages..."
+  sudo pacman -U --noconfirm "${BUILT_PACKAGES[@]}"
+else
+  echo "No packages were built, nothing to install."
+fi
 
 echo "Done."
