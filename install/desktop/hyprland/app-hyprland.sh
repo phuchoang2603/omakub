@@ -3,19 +3,18 @@ set -euo pipefail
 
 sudo -v
 
-paru -Rdd --noconfirm $(pacman -Qsq "hypr|aqua") || true
+# paru -Rdd --noconfirm $(pacman -Qsq "hypr|aqua") || true
 
 PKG_DIR="$HOME/repos/pkgs"
 PKG_LIST=(
-  hyprutils-git
-  hyprgraphics-git
-  hyprwayland-scanner-git
-  hyprland-protocols-git
-  hyprlang-git
-  hyprcursor-git
-  hyprland-qt-support-git
-  hyprland-qtutils-git
-  aquamarine-git
+  # hyprutils-git
+  # hyprgraphics-git
+  # hyprwayland-scanner-git
+  # hyprland-protocols-git
+  # hyprlang-git
+  # hyprland-qt-support-git
+  # hyprland-qtutils-git
+  # aquamarine-git
   hyprland-git
   hypridle-git
   hyprlock-git
@@ -47,7 +46,7 @@ build_pkg() {
   local dir="$PKG_DIR/$pkg"
   echo "Building $pkg..."
   cd "$dir"
-  makepkg -s --noconfirm --cleanbuild --skippgpcheck
+  makepkg -f -s --noconfirm --cleanbuild --skippgpcheck
   local tarball
   tarball=$(find . -maxdepth 1 -name "*.pkg.tar.zst" -print -quit)
   if [[ -n "$tarball" ]]; then

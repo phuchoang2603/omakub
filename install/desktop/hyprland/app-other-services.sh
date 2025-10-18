@@ -1,5 +1,15 @@
 #!/bin/bash
 packages=(
+  hypridle
+  hyprland
+  hyprlock
+  hyprpaper
+  hyprpicker
+  hyprpolkitagent
+  hyprqt6engine
+  hyprsunset
+  xdg-desktop-portal-hyprland
+  hyprshot
   waybar
   mako
   uwsm
