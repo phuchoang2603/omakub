@@ -13,6 +13,7 @@ packages=(
   waybar
   mako
   uwsm
+  nwg-displays
 )
 
 paru -S --needed --noconfirm "${packages[@]}"
