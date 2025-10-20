@@ -29,11 +29,11 @@ if [ "$OMAKUB_OS_ID" == "arch" ]; then
 
   sudo pacman -Syu --noconfirm
 
-  paru -S --noconfirm --needed curl git unzip gum
+  paru -S --noconfirm --needed wget curl git unzip gum
 
 elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
   sudo apt update -y && sudo apt upgrade -y
-  sudo apt install -y curl git unzip
+  sudo apt install -y wget curl git unzip
 
   # Install gum from Charm repo
   sudo mkdir -p /etc/apt/keyrings
