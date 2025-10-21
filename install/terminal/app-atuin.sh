@@ -1,1 +1,1 @@
-paru -S --noconfirm --needed atuin
+cargo install atuin
