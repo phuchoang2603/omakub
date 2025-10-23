@@ -1,3 +1,7 @@
 *.log
 
-themes/pywal
+# Ignore all files in the themes/pywal/ directory
+themes/pywal/*
+
+# But DO NOT ignore hyprland.sh
+!themes/pywal/hyprland.sh
