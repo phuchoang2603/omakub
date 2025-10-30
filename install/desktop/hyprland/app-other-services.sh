@@ -9,7 +9,6 @@ packages=(
   hyprqt6engine
   hyprsunset
   xdg-desktop-portal-hyprland
-  hyprshot
   waybar
   mako
   uwsm
