@@ -5,6 +5,8 @@ if ! command -v kubectl &>/dev/null; then
   sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
   cd - || return 1
 
+  mkdir -p ~/.kube/
+
   # Installing krew, a plugin manager for kubectl
   (
     set -x
