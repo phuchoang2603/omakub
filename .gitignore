@@ -5,3 +5,4 @@ themes/pywal/*
 
 # But DO NOT ignore hyprland.sh
 !themes/pywal/hyprland.sh
+!themes/pywal/neovim.lua
