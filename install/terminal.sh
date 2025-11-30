@@ -25,7 +25,10 @@ if [ "$OMAKUB_OS_ID" == "arch" ]; then
   sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
   sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
-  echo -e "\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+  # Only add chaotic-aur if not already present
+  if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
+    echo -e "\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+  fi
 
   sudo pacman -Syu --noconfirm
 
