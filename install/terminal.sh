@@ -50,7 +50,7 @@ source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
 
 # Symbolic dotfiles
 if [ ! -d "$HOME/repos/dotfiles" ]; then
-  git clone https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
+  git clone --recurse-submodules -j8 https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
 fi
 source ~/repos/dotfiles/symlink.sh
 
