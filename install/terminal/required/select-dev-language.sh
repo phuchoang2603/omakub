@@ -12,11 +12,7 @@ if [[ -n "$languages" ]]; then
   for language in $languages; do
     case $language in
     Ruby)
-      if [ "$OMAKUB_OS_ID" == "arch" ]; then
-        paru -S --noconfirm --needed ruby
-      elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
-        sudo apt install -y ruby ruby-dev
-      fi
+      paru -S --noconfirm --needed ruby
       ;;
     Node.js)
       mise use --global node@lts

@@ -1,9 +1,5 @@
 if ! command -v tmux &>/dev/null; then
-  if [ "$OMAKUB_OS_ID" == "arch" ]; then
-    paru -S --noconfirm --needed tmux
-  elif [ "$OMAKUB_OS_ID" == "ubuntu" ]; then
-    sudo apt install -y tmux
-  fi
+  paru -S --noconfirm --needed tmux
 else
   echo "tmux is already installed."
 fi
