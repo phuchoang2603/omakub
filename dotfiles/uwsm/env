@@ -1,0 +1,37 @@
+# Session
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+
+# GPU
+# export AQ_DRM_DEVICES="/dev/dri/intel-igpu"
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# Toolkits (GTK, QT, etc.) & Wayland Compatibility
+export GDK_BACKEND="wayland,*"
+export GDK_SCALE=2
+# export GTK_THEME="Adwaita-dark"
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_AUTO_SCREEN_SCALE_FACTOR,1
+export QT_QPA_PLATFORMTHEME,qt5ct
+export QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+export QT_STYLE_OVERRIDE=kvantum
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+export OZONE_PLATFORM=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+
+# Input Method
+export QT_IM_MODULE=fcitx5
+# export GTK_IM_MODULE=fcitx5
+export XMODIFIERS="@im=fcitx5"
+
+# Cursor
+export XCURSOR_SIZE=24
+export HYPRCURSOR_SIZE=24
+
+# Paths
+export PATH="./bin:$HOME/.local/bin:$HOME/.local/share/omakub/bin:$PATH"
+export XDG_PICTURES_DIR="$HOME/Pictures/Screenshots/"

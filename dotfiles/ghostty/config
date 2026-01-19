@@ -1,0 +1,15 @@
+# Font configuration
+font-family = CaskaydiaMono Nerd Font
+font-size = 13
+
+# Shell
+command = /usr/bin/zsh
+
+# Window settings
+confirm-close-surface = false
+window-decoration = false
+window-padding-x = 10
+window-padding-y = 10
+
+# Theme colors - imported from separate theme file
+config-file = ~/.config/ghostty/theme

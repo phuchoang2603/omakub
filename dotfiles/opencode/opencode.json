@@ -1,0 +1,51 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "tui": {
+    "scroll_acceleration": {
+      "enabled": true
+    }
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  },
+  "keybinds": {
+    "messages_half_page_up": "{",
+    "messages_half_page_down": "}"
+  },
+  "mcp": {
+    "mcp-obsidian": {
+      "type": "local",
+      "command": ["uvx", "mcp-obsidian"],
+      "enabled": true,
+      "environment": {
+        "OBSIDIAN_API_KEY": "f23c2feae67c9a2b3cfc97c9f536d3167d2ff05497d93cec0dfb7cd6bdebb0d3",
+        "OBSIDIAN_HOST": "127.0.0.1",
+        "OBSIDIAN_PORT": "27123"
+      }
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-6349cb61-fe3f-4d1a-b064-9deab9aa0ad3"
+      },
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": false
+    },
+    "excalidraw": {
+      "type": "local",
+      "command": ["node", "/home/felix/repos/mcp_excalidraw/dist/index.js"],
+      "enabled": false,
+      "environment": {
+        "EXPRESS_SERVER_URL": "http://localhost:3000",
+        "ENABLE_CANVAS_SYNC": "true"
+      }
+    }
+  }
+}
