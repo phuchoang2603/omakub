@@ -32,11 +32,8 @@ paru -S --noconfirm --needed wget curl git unzip gum
 
 source ~/.local/share/omakub/install/terminal/required/prerequisite.sh
 
-# Symbolic dotfiles
-if [ ! -d "$HOME/repos/dotfiles" ]; then
-  git clone --recurse-submodules -j8 https://github.com/phuchoang2603/dotfiles.git ~/repos/dotfiles
-fi
-source ~/repos/dotfiles/symlink.sh
+# Symbolic dotfiles from omakub
+source ~/.local/share/omakub/dotfiles/symlink.sh
 
 source ~/.local/share/omakub/install/terminal/required/set-git.sh >/dev/null
 source ~/.local/share/omakub/install/terminal/required/select-dev-language.sh
