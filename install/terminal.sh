@@ -22,7 +22,7 @@ source ~/.local/share/omakub/install/terminal/required/git-config.sh
 source ~/.local/share/omakub/install/terminal/packages.sh
 
 # Report errors
-source ~/.local/share/omakub/lib/installer.sh
+source ~/.local/share/omakub/install/lib/installer.sh
 report_errors
 
 echo "✅ Terminal setup complete!"

@@ -1,8 +1,46 @@
 #!/bin/bash
 
-source ~/.local/share/omakub/lib/installer.sh
-source ~/.local/share/omakub/packages/desktop-simple.sh
-source ~/.local/share/omakub/packages/desktop-complex.sh
+source ~/.local/share/omakub/install/lib/installer.sh
+
+# Simple desktop applications (just paru/flatpak install)
+# Format: "Display Name:package1 package2 package3"
+# Format for flatpak: "Display Name:flatpak:app.id"
+DESKTOP_SIMPLE=(
+  "Ghostty:ghostty"
+  "VS Code:visual-studio-code-bin"
+  "LibreOffice:libreoffice-fresh"
+  "GNOME Apps:nautilus sushi gnome-keyring"
+  "CopyQ:copyq"
+  "Espanso:espanso-wayland"
+  "Fcitx5:fcitx5 fcitx5-config-qt fcitx5-unikey"
+  "Spotify:spotify-launcher"
+  "Microsoft Edge:microsoft-edge-stable-bin preload"
+  "Obsidian:flatpak:md.obsidian.Obsidian"
+  "LocalSend:localsend-bin"
+  "Todoist:todoist-appimage"
+  "Zotero:zotero-bin"
+  "Auto-CPUFreq:auto-cpufreq"
+  "Tailscale:tailscale"
+  "Cloudflared Warp:cloudflared-warp-bin"
+  "OBS Studio:obs-studio"
+)
+
+# Complex desktop components (need custom install logic)
+# Format: "Display Name:installer_script_name"
+DESKTOP_COMPLEX=(
+  "GTK Themes (Graphite + GRUB):gtk-themes"
+  "Pywal:pywal"
+  "Fonts:fonts"
+  "Rclone:rclone"
+  "Steam:steam"
+  "Timeshift:timeshift"
+)
+
+# DE/WM configurations
+DESKTOP_CONFIGS=(
+  "GNOME Settings"
+  "Hyprland Settings"
+)
 
 echo "🎨 Setting up desktop environment..."
 
