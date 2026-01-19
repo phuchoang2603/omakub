@@ -1,10 +1,15 @@
-# Log all output to a file
+#!/bin/bash
+
+# Log all output
 exec > >(tee -a ~/.local/share/omakub/install.log) 2>&1
 
-echo "Installing terminal and desktop tools..."
+echo "🚀 Starting Omakub installation..."
 
-# Install terminal tools
+# Install Arch prerequisites (paru, chaotic-aur, gum)
+source ~/.local/share/omakub/install/arch-prerequisites.sh
+
+# Install terminal tools (all required, no prompts except user info + language selection)
 source ~/.local/share/omakub/install/terminal.sh
 
-# Install desktop tools and tweaks
+# Install desktop tools (core + optional selection)
 source ~/.local/share/omakub/install/desktop.sh
