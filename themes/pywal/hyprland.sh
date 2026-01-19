@@ -9,7 +9,7 @@ source ~/.cache/wal/colors.sh
 TEXT_HEX="$color0"
 PRIMARY_HEX="$color1"
 
-cp ~/.cache/wal/colors-kitty.conf "$OMAKUB_PATH/themes/pywal/kitty.conf"
+cp ~/.cache/wal/colors-ghostty "$OMAKUB_PATH/themes/pywal/ghostty"
 cp ~/.cache/wal/colors-waybar.css "$OMAKUB_PATH/themes/pywal/waybar.css"
 cp ~/.cache/wal/colors-rofi-temp.rasi "$OMAKUB_PATH/themes/pywal/rofi.rasi"
 cp ~/.cache/wal/colors-mako-temp "$OMAKUB_PATH/themes/pywal/mako.ini"
