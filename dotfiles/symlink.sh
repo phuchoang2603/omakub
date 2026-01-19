@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Base path of your dotfiles repo (hardcoded to avoid issues when sourced)
 DOTFILES_DIR="$HOME/.local/share/omakub/dotfiles"
 CONFIG_TARGET="$HOME/.config"
 

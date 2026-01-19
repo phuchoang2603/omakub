@@ -1,10 +1,6 @@
-# Set common git aliases
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.st status
-git config --global pull.rebase true
-git config --global init.defaultBranch main
+# Prompt for user info
+read -p "Enter GitHub username: " OMAKUB_USER_NAME
+read -p "Enter email address: " OMAKUB_USER_EMAIL
 
 # Set identification from install inputs
 if [[ -n "${OMAKUB_USER_NAME//[[:space:]]/}" ]]; then
@@ -14,3 +10,11 @@ fi
 if [[ -n "${OMAKUB_USER_EMAIL//[[:space:]]/}" ]]; then
   git config --global user.email "$OMAKUB_USER_EMAIL"
 fi
+
+# Set common git aliases
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global pull.rebase true
+git config --global init.defaultBranch main
