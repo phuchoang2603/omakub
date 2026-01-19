@@ -11,6 +11,8 @@ Watch the introduction video and read more at [omakub.org](https://omakub.org).
 To set up your system with Omakub, run the following command in your terminal:
 
 ```bash
-git clone https://github.com/phuchoang2603/omakub.git ~/.local/share/omakub
+git clone --recurse-submodules https://github.com/phuchoang2603/omakub.git ~/.local/share/omakub
 source ~/.local/share/omakub/install.sh
 ```
+
+> **Note**: The `--recurse-submodules` flag is important to clone the dotfiles submodules (like zsh-autosuggestions).

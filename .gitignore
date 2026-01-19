@@ -6,3 +6,26 @@ themes/pywal/*
 # But DO NOT ignore hyprland.sh
 !themes/pywal/hyprland.sh
 !themes/pywal/neovim.lua
+
+# Themes
+dotfiles/hypr/colors.conf
+dotfiles/ghostty/theme
+dotfiles/mako/colors
+dotfiles/rofi/colors.rasi
+dotfiles/spicetify/Themes/Sleek/color.ini
+dotfiles/waybar/waybar.css
+dotfiles/nvim/lua/plugins/theme.lua
+
+# Hyprland machine specific
+dotfiles/hypr/monitors.conf
+dotfiles/hypr/workspaces.conf
+
+# Obs Studio, but still track profile and scenes
+dotfiles/obs-studio/*
+dotfiles/!obs-studio/basic
+
+# Rclone config
+dotfiles/rclone/rclone.conf
+
+# Nvim lock file
+dotfiles/nvim/lazy-lock.json
