@@ -10,11 +10,10 @@ TERMINAL_PACKAGES=(
   "shell:bash-completion zsh-completions starship atuin"
   "search-tools:fzf ripgrep fd bat eza zoxide"
   "file-manager:yazi"
-  "utils:man-db jq imagemagick"
+  "utils:man-db jq imagemagick todoist-cli"
   "tmux:tmux sesh gitmux"
   "docker:docker docker-compose lazydocker"
   "kubernetes:kubectl krew helm kubectx"
-  "vault:vault"
 )
 
 echo "📦 Installing terminal packages via Homebrew..."

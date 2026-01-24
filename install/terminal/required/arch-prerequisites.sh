@@ -46,6 +46,6 @@ sudo pacman -Syu --noconfirm
 # (NOT CLI tools - those use Homebrew)
 # ========================================
 paru -S --noconfirm --needed \
-  base-devel autoconf bison clang pkgconf meson cronie man-pages
+  base-devel autoconf bison clang pkgconf meson cronie man-pages zsh
 
 echo "✅ Prerequisites installed"
