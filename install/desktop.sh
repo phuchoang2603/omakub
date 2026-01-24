@@ -25,8 +25,7 @@ DESKTOP_APPS=(
   "OBS Studio:obs-studio"
   "Pywal:python-pywal16"
   "Fonts:noto-fonts-cjk ttf-cascadia-mono-nerd ttf-ms-fonts texlive-fontsextra texlive-latexextra texlive-binextra"
-  "GTK Themes (Graphite + GRUB):script:gtk-themes"
-  "Rclone Sync:script:rclone"
+  "GTK Themes:libadwaita kvantum-qt5 qt5-wayland qt6-wayland qt5ct qt6ct gnome-themes-extra gtk-engine-murrine"
   "GNOME Settings:script:gnome"
   "Hyprland Settings:script:hyprland"
 )
@@ -90,10 +89,6 @@ if [ ${#selected_indices[@]} -gt 0 ]; then
         for installer in ~/.local/share/omakub/install/desktop/hyprland/*.sh; do
           source "$installer" || INSTALL_ERRORS+=("Failed: $(basename "$installer")")
         done
-        ;;
-      *)
-        source ~/.local/share/omakub/install/desktop/"$package.sh" ||
-          INSTALL_ERRORS+=("Failed: $display_name")
         ;;
       esac
       ;;

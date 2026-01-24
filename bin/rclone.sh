@@ -1,15 +1,4 @@
 #!/bin/bash
-# 1. Install Rclone (Keep as is, crucial)
-echo "[+] Installing rclone..."
-sudo -v # Prompt for sudo password upfront
-curl -s https://rclone.org/install.sh | sudo bash
-
-# --- Prompt for rclone configuration (Keep as is) ---
-echo "You will be prompted to create new remotes (e.g., for OneDrive)."
-echo "Press Enter to continue to rclone config..."
-read -r
-rclone config
-
 # Define paths
 # These variables will be substituted into the template files
 ONEDRIVE_REMOTE_NAME="onedrive"

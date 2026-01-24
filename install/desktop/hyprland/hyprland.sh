@@ -13,6 +13,11 @@ packages=(
   mako
   uwsm
   nwg-displays
+  hyprshot
+  tesseract
+  tesseract-data-eng
+  tesseract-data-vie
+  swappy
 )
 
 paru -S --needed --noconfirm "${packages[@]}"
