@@ -1,6 +1,21 @@
 #!/bin/sh
 # Tool integrations - compatible with bash and zsh
 
+# Homebrew
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [ -n "$BASH_VERSION" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+elif [ -d "/opt/homebrew" ]; then
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -n "$BASH_VERSION" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+fi
+
 # Starship prompt
 if command -v starship &>/dev/null; then
   if [ -n "$ZSH_VERSION" ]; then
