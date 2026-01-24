@@ -9,7 +9,7 @@ TERMINAL_PACKAGES=(
   "monitoring:fastfetch btop"
   "shell:bash-completion zsh-completions starship atuin"
   "search-tools:fzf ripgrep fd bat eza zoxide"
-  "file-manager:yazi"
+  "file-manager:yazi chafa ffmpegthumbnailer poppler"
   "utils:man-db jq imagemagick todoist-cli"
   "tmux:tmux sesh gitmux"
   "docker:docker docker-compose lazydocker"

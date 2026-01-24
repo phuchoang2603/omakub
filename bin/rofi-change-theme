@@ -56,13 +56,12 @@ if [ -n "$chosen_filename" ]; then
   cp ~/.cache/wal/colors-rofi-temp.rasi ~/.config/rofi/colors.rasi
   cp ~/.cache/wal/colors-mako-temp ~/.config/mako/colors
   cp ~/.cache/wal/colors-spicetify-sleek.ini ~/.config/spicetify/Themes/Sleek/color.ini
-  cp ~/.cache/wal/colors-obsidian-appearance.json ~/.config/obsidian/appearance.json
+  cp ~/.cache/wal/colors-obsidian-appearance.json ~/repos/personal/obsidian/.obsidian/appearance.json
 
   # Restart services and reload apps
   systemctl --user restart hyprpaper.service
   systemctl --user restart mako.service
   systemctl --user restart waybar.service
-  pkill -SIGUSR1 ghostty 2>/dev/null || true
   ~/.spicetify/spicetify apply
 
   notify-send "Theme Switcher" "Wallpaper changed and theme applied"
