@@ -2,10 +2,11 @@
 
 source ~/.local/share/omakub/install/lib/installer.sh
 
-# Simple desktop applications (just paru/flatpak install)
+# Desktop applications and components
 # Format: "Display Name:package1 package2 package3"
 # Format for flatpak: "Display Name:flatpak:app.id"
-DESKTOP_SIMPLE=(
+# Format for script: "Display Name:script:script_name"
+DESKTOP_APPS=(
   "Ghostty:ghostty"
   "VS Code:visual-studio-code-bin"
   "LibreOffice:libreoffice-fresh"
@@ -23,23 +24,12 @@ DESKTOP_SIMPLE=(
   "Tailscale:tailscale"
   "Cloudflared Warp:cloudflared-warp-bin"
   "OBS Studio:obs-studio"
-)
-
-# Complex desktop components (need custom install logic)
-# Format: "Display Name:installer_script_name"
-DESKTOP_COMPLEX=(
-  "GTK Themes (Graphite + GRUB):gtk-themes"
-  "Pywal:pywal"
-  "Fonts:fonts"
-  "Rclone:rclone"
-  "Steam:steam"
-  "Timeshift:timeshift"
-)
-
-# DE/WM configurations
-DESKTOP_CONFIGS=(
-  "GNOME Settings"
-  "Hyprland Settings"
+  "Pywal:python-pywal16"
+  "Fonts:noto-fonts-cjk ttf-cascadia-mono-nerd ttf-ms-fonts texlive-fontsextra texlive-latexextra texlive-binextra"
+  "GTK Themes (Graphite + GRUB):script:gtk-themes"
+  "Rclone Sync:script:rclone"
+  "GNOME Settings:script:gnome"
+  "Hyprland Settings:script:hyprland"
 )
 
 echo "🎨 Setting up desktop environment..."
@@ -48,17 +38,17 @@ echo "🎨 Setting up desktop environment..."
 source ~/.local/share/omakub/install/desktop/prerequisites.sh
 
 # ========================================
-# Simple Desktop Apps Selection
+# Desktop Apps & Components Selection
 # ========================================
 echo ""
-echo "📦 Desktop Applications"
-echo "Select applications to install (space-separated numbers, e.g., '1 3 5', or 'all'):"
+echo "📦 Select Desktop Applications & Components"
+echo "Enter space-separated numbers (e.g., '1 3 5'), or 'all':"
 echo ""
 
 # Display menu
-for i in "${!DESKTOP_SIMPLE[@]}"; do
-  IFS=':' read -r display_name _ <<< "${DESKTOP_SIMPLE[$i]}"
-  printf "%2d) %s\n" $((i+1)) "$display_name"
+for i in "${!DESKTOP_APPS[@]}"; do
+  IFS=':' read -r display_name _ <<<"${DESKTOP_APPS[$i]}"
+  printf "%2d) %s\n" $((i + 1)) "$display_name"
 done
 
 echo ""
@@ -66,12 +56,12 @@ read -p "Enter selection: " selection
 
 # Parse selection
 if [[ "$selection" == "all" ]]; then
-  selected_indices=("${!DESKTOP_SIMPLE[@]}")
+  selected_indices=("${!DESKTOP_APPS[@]}")
 else
   selected_indices=()
   for num in $selection; do
-    idx=$((num-1))
-    if [[ $idx -ge 0 && $idx -lt ${#DESKTOP_SIMPLE[@]} ]]; then
+    idx=$((num - 1))
+    if [[ $idx -ge 0 && $idx -lt ${#DESKTOP_APPS[@]} ]]; then
       selected_indices+=($idx)
     fi
   done
@@ -79,74 +69,38 @@ fi
 
 # Install selected apps
 if [ ${#selected_indices[@]} -gt 0 ]; then
-  echo "Installing selected applications..."
+  echo "Installing selected items..."
   for idx in "${selected_indices[@]}"; do
-    app_def="${DESKTOP_SIMPLE[$idx]}"
-    IFS=':' read -r display_name install_type package <<< "$app_def"
-    
+    app_def="${DESKTOP_APPS[$idx]}"
+    IFS=':' read -r display_name install_type package <<<"$app_def"
+
     echo "→ Installing $display_name..."
-    
-    if [[ "$install_type" == "flatpak" ]]; then
+
+    case "$install_type" in
+    flatpak)
       flatpak install -y "$package" || INSTALL_ERRORS+=("Failed: $display_name")
-    else
-      pkg $install_type || INSTALL_ERRORS+=("Failed: $display_name")
-    fi
-  done
-fi
-
-# ========================================
-# Complex Desktop Components Selection
-# ========================================
-echo ""
-echo "🎨 Desktop Themes & Configurations"
-echo "Select components to install (space-separated numbers, e.g., '1 3', or 'all'):"
-echo ""
-
-ALL_COMPLEX=("${DESKTOP_COMPLEX[@]}" "${DESKTOP_CONFIGS[@]}")
-
-for i in "${!ALL_COMPLEX[@]}"; do
-  IFS=':' read -r display_name _ <<< "${ALL_COMPLEX[$i]}"
-  printf "%2d) %s\n" $((i+1)) "$display_name"
-done
-
-echo ""
-read -p "Enter selection: " selection
-
-# Parse selection
-if [[ "$selection" == "all" ]]; then
-  selected_indices=("${!ALL_COMPLEX[@]}")
-else
-  selected_indices=()
-  for num in $selection; do
-    idx=$((num-1))
-    if [[ $idx -ge 0 && $idx -lt ${#ALL_COMPLEX[@]} ]]; then
-      selected_indices+=($idx)
-    fi
-  done
-fi
-
-# Install selected components
-if [ ${#selected_indices[@]} -gt 0 ]; then
-  echo "Installing selected components..."
-  for idx in "${selected_indices[@]}"; do
-    selected="${ALL_COMPLEX[$idx]}"
-    IFS=':' read -r display_name installer_name <<< "$selected"
-    
-    case "$display_name" in
-      "GNOME Settings")
+      ;;
+    script)
+      case "$package" in
+      gnome)
         for installer in ~/.local/share/omakub/install/desktop/gnome/*.sh; do
           source "$installer" || INSTALL_ERRORS+=("Failed: $(basename "$installer")")
         done
         ;;
-      "Hyprland Settings")
+      hyprland)
         for installer in ~/.local/share/omakub/install/desktop/hyprland/*.sh; do
           source "$installer" || INSTALL_ERRORS+=("Failed: $(basename "$installer")")
         done
         ;;
       *)
-        source ~/.local/share/omakub/install/desktop/"$installer_name.sh" || \
+        source ~/.local/share/omakub/install/desktop/"$package.sh" ||
           INSTALL_ERRORS+=("Failed: $display_name")
         ;;
+      esac
+      ;;
+    *)
+      pkg $install_type || INSTALL_ERRORS+=("Failed: $display_name")
+      ;;
     esac
   done
 fi
