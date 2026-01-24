@@ -48,71 +48,91 @@ echo "🎨 Setting up desktop environment..."
 source ~/.local/share/omakub/install/desktop/prerequisites.sh
 
 # ========================================
-# Simple Desktop Apps (gum multi-select)
+# Simple Desktop Apps Selection
 # ========================================
 echo ""
 echo "📦 Desktop Applications"
+echo "Select applications to install (space-separated numbers, e.g., '1 3 5', or 'all'):"
+echo ""
 
-# Extract display names for gum
-SIMPLE_NAMES=()
-for app_def in "${DESKTOP_SIMPLE[@]}"; do
-  IFS=':' read -r display_name _ <<< "$app_def"
-  SIMPLE_NAMES+=("$display_name")
+# Display menu
+for i in "${!DESKTOP_SIMPLE[@]}"; do
+  IFS=':' read -r display_name _ <<< "${DESKTOP_SIMPLE[$i]}"
+  printf "%2d) %s\n" $((i+1)) "$display_name"
 done
 
-selected_simple=$(gum choose "${SIMPLE_NAMES[@]}" \
-  --no-limit \
-  --height 20 \
-  --header "Select desktop applications")
+echo ""
+read -p "Enter selection: " selection
 
-if [[ -n "$selected_simple" ]]; then
+# Parse selection
+if [[ "$selection" == "all" ]]; then
+  selected_indices=("${!DESKTOP_SIMPLE[@]}")
+else
+  selected_indices=()
+  for num in $selection; do
+    idx=$((num-1))
+    if [[ $idx -ge 0 && $idx -lt ${#DESKTOP_SIMPLE[@]} ]]; then
+      selected_indices+=($idx)
+    fi
+  done
+fi
+
+# Install selected apps
+if [ ${#selected_indices[@]} -gt 0 ]; then
   echo "Installing selected applications..."
-  
-  while IFS= read -r selected; do
-    # Find matching app definition
-    for app_def in "${DESKTOP_SIMPLE[@]}"; do
-      IFS=':' read -r display_name install_type package <<< "$app_def"
-      
-      if [[ "$display_name" == "$selected" ]]; then
-        echo "→ Installing $display_name..."
-        
-        if [[ "$install_type" == "flatpak" ]]; then
-          flatpak install -y "$package" || INSTALL_ERRORS+=("Failed: $display_name")
-        else
-          # install_type is actually the package name(s) for paru
-          pkg $install_type || INSTALL_ERRORS+=("Failed: $display_name")
-        fi
-        break
-      fi
-    done
-  done <<< "$selected_simple"
+  for idx in "${selected_indices[@]}"; do
+    app_def="${DESKTOP_SIMPLE[$idx]}"
+    IFS=':' read -r display_name install_type package <<< "$app_def"
+    
+    echo "→ Installing $display_name..."
+    
+    if [[ "$install_type" == "flatpak" ]]; then
+      flatpak install -y "$package" || INSTALL_ERRORS+=("Failed: $display_name")
+    else
+      pkg $install_type || INSTALL_ERRORS+=("Failed: $display_name")
+    fi
+  done
 fi
 
 # ========================================
-# Complex Desktop Components (gum multi-select)
+# Complex Desktop Components Selection
 # ========================================
 echo ""
 echo "🎨 Desktop Themes & Configurations"
+echo "Select components to install (space-separated numbers, e.g., '1 3', or 'all'):"
+echo ""
 
 ALL_COMPLEX=("${DESKTOP_COMPLEX[@]}" "${DESKTOP_CONFIGS[@]}")
 
-# Extract display names
-COMPLEX_NAMES=()
-for item in "${ALL_COMPLEX[@]}"; do
-  IFS=':' read -r display_name _ <<< "$item"
-  COMPLEX_NAMES+=("$display_name")
+for i in "${!ALL_COMPLEX[@]}"; do
+  IFS=':' read -r display_name _ <<< "${ALL_COMPLEX[$i]}"
+  printf "%2d) %s\n" $((i+1)) "$display_name"
 done
 
-selected_complex=$(gum choose "${COMPLEX_NAMES[@]}" \
-  --no-limit \
-  --height 15 \
-  --header "Select themes and configurations")
+echo ""
+read -p "Enter selection: " selection
 
-if [[ -n "$selected_complex" ]]; then
+# Parse selection
+if [[ "$selection" == "all" ]]; then
+  selected_indices=("${!ALL_COMPLEX[@]}")
+else
+  selected_indices=()
+  for num in $selection; do
+    idx=$((num-1))
+    if [[ $idx -ge 0 && $idx -lt ${#ALL_COMPLEX[@]} ]]; then
+      selected_indices+=($idx)
+    fi
+  done
+fi
+
+# Install selected components
+if [ ${#selected_indices[@]} -gt 0 ]; then
   echo "Installing selected components..."
-  
-  while IFS= read -r selected; do
-    case "$selected" in
+  for idx in "${selected_indices[@]}"; do
+    selected="${ALL_COMPLEX[$idx]}"
+    IFS=':' read -r display_name installer_name <<< "$selected"
+    
+    case "$display_name" in
       "GNOME Settings")
         for installer in ~/.local/share/omakub/install/desktop/gnome/*.sh; do
           source "$installer" || INSTALL_ERRORS+=("Failed: $(basename "$installer")")
@@ -124,18 +144,11 @@ if [[ -n "$selected_complex" ]]; then
         done
         ;;
       *)
-        # Find installer script name from DESKTOP_COMPLEX
-        for complex_def in "${DESKTOP_COMPLEX[@]}"; do
-          IFS=':' read -r display_name installer_name <<< "$complex_def"
-          if [[ "$display_name" == "$selected" ]]; then
-            source ~/.local/share/omakub/install/desktop/"$installer_name.sh" || \
-              INSTALL_ERRORS+=("Failed: $display_name")
-            break
-          fi
-        done
+        source ~/.local/share/omakub/install/desktop/"$installer_name.sh" || \
+          INSTALL_ERRORS+=("Failed: $display_name")
         ;;
     esac
-  done <<< "$selected_complex"
+  done
 fi
 
 # Report errors
@@ -144,4 +157,8 @@ report_errors
 echo "✅ Desktop setup complete!"
 
 # Reboot prompt
-gum confirm "Ready to reboot for all settings to take effect?" && sudo reboot
+read -p "Ready to reboot for all settings to take effect? (y/N): " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  sudo reboot
+fi

@@ -1,8 +1,24 @@
 #!/bin/bash
 
-echo "🔧 Setting up Arch Linux prerequisites..."
+echo "🔧 Setting up prerequisites..."
 
-# Install paru (AUR helper)
+# ========================================
+# Install Homebrew (for CLI applications)
+# ========================================
+if ! command -v brew &>/dev/null; then
+  echo "→ Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  
+  # Add brew to current shell session
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo "✅ Homebrew installed"
+else
+  echo "✅ Homebrew already installed"
+fi
+
+# ========================================
+# Install paru (for system packages & desktop apps)
+# ========================================
 if ! command -v paru &>/dev/null; then
   echo "→ Installing paru..."
   sudo pacman -S --needed --noconfirm base-devel git
@@ -14,7 +30,9 @@ else
   echo "✅ Paru already installed"
 fi
 
+# ========================================
 # Setup chaotic-aur repository
+# ========================================
 sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 sudo pacman-key --lsign-key 3056513887B78AEB
 sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
@@ -26,12 +44,13 @@ fi
 
 sudo pacman -Syu --noconfirm
 
-# Install essential tools
+# ========================================
+# Install system packages via paru
+# (NOT CLI tools - those use Homebrew)
+# ========================================
 paru -S --noconfirm --needed \
-  wget curl unzip gum \
   base-devel autoconf bison clang pkgconf meson \
-  bash bash-completion zsh zsh-completions tldr cronie man-db man-pages \
-  ffmpeg jq poppler fd ripgrep fzf zoxide imagemagick bat powertop btop eza tree \
+  bash-completion zsh-completions cronie man-db man-pages \
   python-pipx python-pip
 
 echo "✅ Prerequisites installed"

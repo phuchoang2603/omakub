@@ -8,11 +8,11 @@ TERMINAL_PACKAGES=(
   "nvim:neovim tree-sitter luarocks"
   "lazygit:lazygit"
   "yazi:yazi"
-  "gh:github-cli"
+  "gh:gh"
   "fastfetch:fastfetch"
   "starship:starship"
   "atuin:atuin"
-  "opencode:opencode-bin"
+  "opencode:opencode"
   "fzf:fzf"
   "rg:ripgrep"
   "fd:fd"
@@ -24,6 +24,8 @@ TERMINAL_PACKAGES=(
   "btop:btop"
   "magick:imagemagick"
   "tmux:tmux"
+  "sesh:sesh"
+  "gitmux:gitmux"
   "docker:docker docker-compose"
   "lazydocker:lazydocker"
   "kubectl:kubectl"
@@ -33,18 +35,12 @@ TERMINAL_PACKAGES=(
   "vault:vault"
 )
 
-echo "📦 Installing terminal packages..."
+echo "📦 Installing terminal packages via Homebrew..."
 
-# Install all terminal packages via paru
+# Install all terminal packages via brew
 for app_def in "${TERMINAL_PACKAGES[@]}"; do
   IFS=':' read -r cmd packages <<<"$app_def"
-  install_if_missing "$cmd" $packages
+  brew_install_if_missing "$cmd" $packages
 done
-
-# Post-install: Enable Docker service and add user to docker group
-if command -v docker &>/dev/null; then
-  sudo systemctl enable --now docker.service
-  sudo usermod -aG docker ${USER}
-fi
 
 echo "✅ Terminal packages installed"

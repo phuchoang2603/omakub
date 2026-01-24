@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Configure git
-source ~/.local/share/omakub/install/terminal/required/git-config.sh
-
-# Install Arch prerequisites (paru, chaotic-aur, gum)
+# Install prerequisites (Homebrew, paru, system packages)
 source ~/.local/share/omakub/install/terminal/required/arch-prerequisites.sh
 
-# Install mise + languages
+# Configure git (prompts for username/email)
+source ~/.local/share/omakub/install/terminal/required/git-config.sh
+
+# Install mise + languages (Node, Python, Go, Rust)
 source ~/.local/share/omakub/install/terminal/required/dev-languages.sh
 
-# Symlink dotfiles
+# Symlink dotfiles (includes Homebrew in PATH via .zshrc)
 source ~/.local/share/omakub/dotfiles/symlink.sh
 
-# Install all terminal packages
+# Install all terminal packages via Homebrew
 source ~/.local/share/omakub/install/terminal/packages.sh
 
 # Report errors
