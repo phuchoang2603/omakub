@@ -8,9 +8,6 @@ echo "🔧 Setting up prerequisites..."
 if ! command -v brew &>/dev/null; then
   echo "→ Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  
-  # Add brew to current shell session
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   echo "✅ Homebrew installed"
 else
   echo "✅ Homebrew already installed"
@@ -49,8 +46,6 @@ sudo pacman -Syu --noconfirm
 # (NOT CLI tools - those use Homebrew)
 # ========================================
 paru -S --noconfirm --needed \
-  base-devel autoconf bison clang pkgconf meson \
-  bash-completion zsh-completions cronie man-db man-pages \
-  python-pipx python-pip
+  base-devel autoconf bison clang pkgconf meson cronie man-pages
 
 echo "✅ Prerequisites installed"

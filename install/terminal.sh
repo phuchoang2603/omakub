@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Install prerequisites (Homebrew, paru, system packages)
-source ~/.local/share/omakub/install/terminal/required/arch-prerequisites.sh
-
 # Configure git (prompts for username/email)
 source ~/.local/share/omakub/install/terminal/required/git-config.sh
+
+# Install prerequisites (Homebrew, paru, system packages)
+source ~/.local/share/omakub/install/terminal/required/arch-prerequisites.sh
 
 # Install mise + languages (Node, Python, Go, Rust)
 source ~/.local/share/omakub/install/terminal/required/dev-languages.sh

@@ -31,26 +31,12 @@ install_if_missing() {
   local cmd="$1"
   shift
   local packages=("$@")
-  
+
   if has "$cmd"; then
     echo "✓ $cmd already installed"
   else
     echo "→ Installing $cmd..."
     pkg "${packages[@]}" || return 1
-  fi
-}
-
-# Install package only if command doesn't exist (brew version)
-brew_install_if_missing() {
-  local cmd="$1"
-  shift
-  local packages=("$@")
-  
-  if has "$cmd"; then
-    echo "✓ $cmd already installed"
-  else
-    echo "→ Installing $cmd via Homebrew..."
-    brew_pkg "${packages[@]}" || return 1
   fi
 }
 
