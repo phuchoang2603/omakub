@@ -1,12 +1,5 @@
 *.log
 
-# Ignore all files in the themes/pywal/ directory
-themes/pywal/*
-
-# But DO NOT ignore hyprland.sh
-!themes/pywal/hyprland.sh
-!themes/pywal/neovim.lua
-
 # Themes
 dotfiles/hypr/colors.conf
 dotfiles/ghostty/theme
@@ -14,7 +7,6 @@ dotfiles/mako/colors
 dotfiles/rofi/colors.rasi
 dotfiles/spicetify/Themes/Sleek/color.ini
 dotfiles/waybar/waybar.css
-dotfiles/nvim/lua/plugins/theme.lua
 
 # Hyprland machine specific
 dotfiles/hypr/monitors.conf
