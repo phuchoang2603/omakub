@@ -4,7 +4,6 @@ source ~/.local/share/omakub/install/lib/installer.sh
 
 # Desktop applications and components
 # Format: "Display Name:package1 package2 package3"
-# Format for flatpak: "Display Name:flatpak:app.id"
 # Format for script: "Display Name:script:script_name"
 DESKTOP_APPS=(
   "Ghostty:ghostty"
@@ -17,7 +16,7 @@ DESKTOP_APPS=(
   "Fcitx5:fcitx5 fcitx5-config-qt fcitx5-unikey"
   "Spotify:spotify-launcher spicetify-cli"
   "Microsoft Edge:microsoft-edge-stable-bin preload"
-  "Obsidian:flatpak:md.obsidian.Obsidian"
+  "Obsidian:obsidian-bin"
   "LocalSend:localsend-bin"
   "Zotero:zotero-bin"
   "Auto-CPUFreq:auto-cpufreq"
@@ -31,7 +30,7 @@ DESKTOP_APPS=(
 
 echo "🎨 Setting up desktop environment..."
 
-# Install desktop prerequisites (flatpak, base packages - REQUIRED)
+# Install desktop prerequisites (base packages - REQUIRED)
 source ~/.local/share/omakub/install/desktop/prerequisites.sh
 
 # ========================================
@@ -74,9 +73,6 @@ if [ ${#selected_indices[@]} -gt 0 ]; then
     echo "→ Installing $display_name..."
 
     case "$install_type" in
-    flatpak)
-      flatpak install -y "$package" || INSTALL_ERRORS+=("Failed: $display_name")
-      ;;
     script)
       case "$package" in
       gnome)

@@ -5,8 +5,7 @@ apps=(
   # "Neovim.desktop"
   "code.desktop"
   "spotify-launcher.desktop"
-  # "obsidian.desktop"
-  "md.obsidian.Obsidian.desktop"
+  "obsidian.desktop"
   "org.gnome.Nautilus.desktop"
 )
 
@@ -15,7 +14,6 @@ installed_apps=()
 
 # Directory where .desktop files are typically stored
 desktop_dirs=(
-  "/var/lib/flatpak/exports/share/applications"
   "/usr/share/applications"
   "/usr/local/share/applications"
   "$HOME/.local/share/applications"
@@ -39,4 +37,4 @@ favorites_list="[${favorites_list%,}]"
 gsettings set org.gnome.shell favorite-apps "$favorites_list"
 
 # Configure Auto Move Windows
-gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['microsoft-edge.desktop:1', 'com.mitchellh.ghostty.desktop:2', 'code.desktop:3', 'spotify-launcher.desktop:4', 'md.obsidian.Obsidian.desktop:5', 'org.gnome.Nautilus.desktop:6']"
+gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['microsoft-edge.desktop:1', 'com.mitchellh.ghostty.desktop:2', 'code.desktop:3', 'spotify-launcher.desktop:4', 'obsidian.desktop:5', 'org.gnome.Nautilus.desktop:6']"
