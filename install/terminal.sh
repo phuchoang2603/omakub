@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Configure git (prompts for username/email)
-source ~/.local/share/omakub/install/terminal/required/git-config.sh
-
 # Symlink dotfiles (includes Homebrew in PATH via .zshrc)
 source ~/.local/share/omakub/dotfiles/symlink.sh
 

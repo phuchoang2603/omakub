@@ -7,7 +7,7 @@ TERMINAL_PACKAGES=(
   "python: python pipx"
   "git-tools:lazygit gh"
   "monitoring:fastfetch btop"
-  "shell:bash-completion zsh-completions starship atuin"
+  "shell:zsh-completions starship atuin"
   "search-tools:fzf ripgrep fd bat eza zoxide"
   "file-manager:yazi ffmpegthumbnailer poppler imagemagick"
   "utils:rclone man-db jq todoist-cli"

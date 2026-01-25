@@ -18,6 +18,7 @@ alias lzg='lazygit'
 alias lzd='lazydocker'
 alias asr='atuin scripts run'
 alias oc='opencode --port'
+alias man='gman'
 
 # Kubernetes
 alias kx='kubectx'

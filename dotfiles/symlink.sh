@@ -25,4 +25,7 @@ ln -sf "$DOTFILES_DIR/zsh/.bashrc" "$HOME/.bashrc"
 [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 
+[ -f "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
+ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
+
 echo "✅ Done."
