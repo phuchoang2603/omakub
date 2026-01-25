@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# Load todoist CLI from mise go
-if command -v mise &>/dev/null; then
-    eval "$(mise activate bash)"
-fi
-
 # Rofi flags for standard windows
 ROFI_FLAGS="-normal-window"
 
@@ -12,7 +7,7 @@ ROFI_FLAGS="-normal-window"
 declare notify_command="notify-send"
 
 # Set name of todoist binary
-declare todoist_command="todoist"
+declare todoist_command="/home/linuxbrew/.linuxbrew/bin/todoist"
 
 ## Code - Only change bellow this line if you know what you're doing
 

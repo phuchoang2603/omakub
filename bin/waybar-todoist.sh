@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if command -v mise &>/dev/null; then
-    eval "$(mise env -s bash)" 2>/dev/null
-fi
+# Set name of todoist binary
+declare todoist_command="/home/linuxbrew/.linuxbrew/bin/todoist"
 
-if ! todoist list &>/dev/null; then
+if ! "$todoist_command" list &>/dev/null; then
     printf '{"text": "ERR: Todoist", "tooltip": "Todoist CLI not found or not configured. (Check mise or API token)"}\n'
     exit 0
 fi
@@ -15,7 +14,7 @@ ALL_FORMATTED_FOR_TOOLTIP=() # Stores tasks as "Date (Project Label) Name"
 ALL_TEXT_ONLY_NAMES=()       # Stores tasks as "Name" for the main text display
 
 # Get raw task list output in CSV format, filtered by "@important" label.
-raw_task_output=$(todoist --csv list -f "@important" 2>/dev/null)
+raw_task_output=$("$todoist_command" --csv list -f "@important" 2>/dev/null)
 
 if [ -z "$raw_task_output" ]; then
     printf '{"text": "Chilling", "tooltip": "No tasks found with @important label."}\n'

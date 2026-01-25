@@ -6,7 +6,7 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rclone bisync \
+ExecStart=/home/linuxbrew/.linuxbrew/bin/rclone bisync \
     {{ONEDRIVE_REMOTE_NAME}}:{{ONEDRIVE_LIBRARY_BASE}}/%I \
     %h/%I \
     --create-empty-src-dirs \

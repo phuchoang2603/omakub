@@ -5,7 +5,7 @@ ONEDRIVE_REMOTE_NAME="onedrive"
 ONEDRIVE_LIBRARY_BASE="Library"
 
 # Define local directories to bisync with their respective OneDrive counterparts
-declare -a SYNC_DIRS=("Pictures" "Documents" "Music" "Videos" "Downloads")
+declare -a SYNC_DIRS=("Pictures" "Documents" "Music" "Videos")
 
 # Define template and systemd directories
 TEMPLATE_DIR="$HOME/.config/rclone"
@@ -60,17 +60,9 @@ else
     echo "  Error: Timer template '$TIMER_TEMPLATE_PATH' not found. Aborting."
 fi
 
-# 3. Reload Systemd user services
 echo "[+] Reloading systemd user services..."
 systemctl --user daemon-reexec
 systemctl --user daemon-reload
-
-# 4. Perform the initial --resync for each folder in SYNC_DIRS (LIVE RUN)
-echo ""
-echo "--------------------------------------------------------------------------------"
-echo "[+] Performing initial --resync for each synchronized directory (LIVE RUN)..."
-echo "    This will directly modify files on both sides as per bisync rules."
-echo "--------------------------------------------------------------------------------"
 
 for dir in "${SYNC_DIRS[@]}"; do
     echo ""
@@ -78,7 +70,7 @@ for dir in "${SYNC_DIRS[@]}"; do
     echo "    (Syncing $ONEDRIVE_REMOTE_NAME:$ONEDRIVE_LIBRARY_BASE/$dir with $HOME/$dir)"
     echo ""
 
-    /usr/bin/rclone bisync \
+    rclone bisync \
         "$ONEDRIVE_REMOTE_NAME:$ONEDRIVE_LIBRARY_BASE/$dir" \
         "$HOME/$dir" \
         --create-empty-src-dirs \
@@ -104,13 +96,6 @@ for dir in "${SYNC_DIRS[@]}"; do
     echo ">>> Initial sync for $dir completed. <<<"
 done
 
-# 5. Enable and start Systemd services/timers for all SYNC_DIRS
-echo ""
-echo "--------------------------------------------------------------------------------"
-echo "[+] Enabling and starting Systemd services and timers for all synced directories..."
-echo "    These will now run on demand or automatically every 4 hours."
-echo "--------------------------------------------------------------------------------"
-
 for dir in "${SYNC_DIRS[@]}"; do
     echo "  -> Enabling and starting rclone-bisync@$dir.service..."
     systemctl --user enable --now "rclone-bisync@$dir.service"
@@ -118,7 +103,3 @@ for dir in "${SYNC_DIRS[@]}"; do
     echo "  -> Enabling and starting rclone-bisync@$dir.timer (for 4-hourly syncs)..."
     systemctl --user enable --now "rclone-bisync@$dir.timer"
 done
-
-echo "[✓] Rclone setup complete!"
-echo "To check the status of any bisync run (e.g., for 'Pictures'):"
-echo "  systemctl --user status rclone-bisync@Pictures.service"
