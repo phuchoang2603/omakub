@@ -11,9 +11,6 @@ export SUDO_EDITOR="$EDITOR"
 # Terminal
 export TERM="xterm-256color"
 
-# Omakub
-export OMAKUB_PATH="$HOME/.local/share/omakub"
-
 # Kubernetes - merge all kube config files
 export KUBECONFIG=$(find ~/.kube -name "*.yml" 2>/dev/null | tr '\n' ':' | sed 's/:$//')
 
