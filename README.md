@@ -1,5 +1,6 @@
 # Omakub
 (deprecated as I switch to Nix btw)
+
 Have your newly Arch system automatically configured with your favourite apps and settings in seconds.
 [![GitHub Introduction](https://img.youtube.com/vi/2WSktnoubMM/0.jpg)](https://youtu.be/2WSktnoubMM)
 
